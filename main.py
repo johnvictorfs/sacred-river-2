@@ -15,12 +15,25 @@ __author__ = 'John Victor'
 __version__ = '0.1'
 
 from classes import *
+from userInventory import *
 from gameMenu import gameMenu
 from clearScreen import clearScreen
 from setUsername import setUsername
 from continueScreen import continueScreen
 from killGame import killGame
-from userInventory import *
+
+"""
+Notes:
+    
+    # Clearing screen
+clearScreen()
+
+    # Press Enter to continue screen
+continueScreen()
+
+    # Giving item to player
+inventory.add_item(item_name)
+"""
 
 inventory = Inventory()
 

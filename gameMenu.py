@@ -12,7 +12,7 @@ def gameMenu():
     clearScreen()
     print("1: User stats")
     print("2: User inventory")
-    print("3: Give Steel Sword")
+    print("3: Shop")
     print("4: Exit Game (progress lost)")
     answer = getInput()
     if answer == '1':
@@ -20,7 +20,7 @@ def gameMenu():
     elif answer == '2':
         inventory.print_items()
     elif answer == '3':
-        inventory.add_item(steel_sword)
+        print('this will be a shop.')
     elif answer == '4':
         killGame()
     else:
