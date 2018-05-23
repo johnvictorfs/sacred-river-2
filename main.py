@@ -38,8 +38,18 @@ def initialScreen():
 
 def gameMenu():
     clearScreen()
-    print("This will be a Menu")
+    print("1: User stats")
+    print("2: User inventory")
+    print("3: Shop")
+    print("4:")
 
+
+def setUsername():
+    clearScreen()
+    user_name = input("How are you called?\n\n>> ")
+
+    return user_name
 
 initialScreen()
+setUsername()
 gameMenu()
