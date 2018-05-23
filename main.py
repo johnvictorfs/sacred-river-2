@@ -1,11 +1,5 @@
 #!/usr/bin/env python
 
-from classes import *
-from gameMenu import gameMenu
-from clearScreen import clearScreen
-from setUsername import setUsername
-from continueScreen import continueScreen
-
 """
 Sequel of my terminal text-RPG game originally made in C.
 But this time made in Python.
@@ -19,6 +13,16 @@ Objectives:
 
 __author__ = 'John Victor'
 __version__ = '0.1'
+
+from classes import *
+from gameMenu import gameMenu
+from clearScreen import clearScreen
+from setUsername import setUsername
+from continueScreen import continueScreen
+from killGame import killGame
+from userInventory import *
+
+inventory = Inventory()
 
 
 def initialScreen():
@@ -36,6 +40,7 @@ def initialScreen():
 def gameLoop():
     while player.health > 0:
         gameMenu()
+    killGame()
 
 
 initialScreen()
