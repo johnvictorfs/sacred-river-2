@@ -23,9 +23,9 @@ def initial_screen():
     clear_screen()
     print("Welcome to Sacred River 2!")
     print("\n")
-    print("Made by {} -  Version: {}".format(__author__, __version__))
+    print("- Made by {}\n- Version: {}".format(__author__, __version__))
     print("\n")
-    print("The sequel of my terminal text-RPG originally made in C. This time made in Python.")
+    print("The sequel of my terminal text-RPG originally made in C.\nThis time made in Python.")
     print("\n")
     continue_screen()
     return

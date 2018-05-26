@@ -22,17 +22,17 @@ def display_shop():
     else:
         print("Invalid answer.")
         return
-    buy(buying_item)
+    bought_item = buy(buying_item)
+    return bought_item
 
 
 def buy(item):
     if player.gold >= item.buy_value:
         print("Bought {}".format(item.name))
-        inventory.add_item(item)
         player.gold -= item.buy_value
         print("Your gold: {}".format(player.gold))
         continue_screen()
-        return
+        return item
     else:
         print("You don't have enough money for that you fool!")
         continue_screen()
