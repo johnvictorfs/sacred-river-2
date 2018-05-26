@@ -26,7 +26,7 @@ class Item(object):
 
 
 # Class User: Name, Health, Attack, Defence, Gold #
-player = User('', 100, 1, 1, 5)
+player = User('Player', 100, 1, 1, 5)
 
 # Class Enemy: Name, Health, Attack, Defence #
 goblin_level_2 = Enemy('Goblin (Level 2)', 30, 20, 3)
@@ -43,3 +43,11 @@ steel_sword = Item('Steel Sword', 8, 0, 12, 6, 0)
 
 # Potions #
 health_potion = Item('Health Potion', 0, 0, 5, 2, 20)
+
+# Enemy List #
+enemy_list = (
+    goblin_level_2,
+    goblin_level_5,
+    spider_level_1,
+    spider_level_5
+)

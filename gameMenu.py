@@ -2,6 +2,7 @@ from clearScreen import clear_screen
 from getInput import get_input
 from displayStats import display_stats
 from killGame import kill_game
+from gameShop import display_shop
 from classes import *
 from userInventory import *
 
@@ -15,15 +16,13 @@ def game_menu():
     print("3: Shop")
     print("4: Exit Game (progress lost)")
     answer = get_input()
-    if answer == '1':
+    if answer is '1':
         display_stats(player)
-    elif answer == '2':
+    elif answer is '2':
         inventory.print_items()
-    elif answer == '3':
-        print('this will be a shop.')
-        inventory.add_item(iron_sword)
-        inventory.add_item(health_potion)
-    elif answer == '4':
+    elif answer is '3':
+        display_shop()
+    elif answer is '4':
         kill_game()
     else:
         print('Unexpected answer. Try again')
