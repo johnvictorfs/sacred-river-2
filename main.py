@@ -16,11 +16,11 @@ __version__ = '0.1'
 
 from classes import *
 from userInventory import *
-from gameMenu import gameMenu
-from clearScreen import clearScreen
-from setUsername import setUsername
-from continueScreen import continueScreen
-from killGame import killGame
+from gameMenu import game_menu
+from clearScreen import clear_screen
+from setUsername import set_username
+from continueScreen import continue_screen
+from killGame import kill_game
 
 """
 Notes:
@@ -38,24 +38,24 @@ inventory.add_item(item_name)
 inventory = Inventory()
 
 
-def initialScreen():
-    clearScreen()
+def initial_screen():
+    clear_screen()
     print("Welcome to Sacred River 2!")
     print("\n")
     print("Made by {} -  Version: {}".format(__author__, __version__))
     print("\n")
     print("The sequel of my terminal text-RPG originally made in C. This time made in Python.")
     print("\n")
-    continueScreen()
+    continue_screen()
     return
 
 
-def gameLoop():
+def game_loop():
     while player.health > 0:
-        gameMenu()
-    killGame()
+        game_menu()
+    kill_game()
 
 
-initialScreen()
-player.name = setUsername()
-gameLoop()
+initial_screen()
+player.name = set_username()
+game_loop()

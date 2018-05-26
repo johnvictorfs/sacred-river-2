@@ -1,6 +1,6 @@
 from sys import exit
 
 
-def killGame():
+def kill_game():
     print('--- Exiting Game ---')
     exit(0)

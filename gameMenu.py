@@ -1,28 +1,28 @@
-from clearScreen import clearScreen
-from getInput import getInput
-from displayStats import displayStats
-from killGame import killGame
+from clearScreen import clear_screen
+from getInput import get_input
+from displayStats import display_stats
+from killGame import kill_game
 from classes import *
 from userInventory import *
 
 inventory = Inventory()
 
 
-def gameMenu():
-    clearScreen()
+def game_menu():
+    clear_screen()
     print("1: User stats")
     print("2: User inventory")
     print("3: Shop")
     print("4: Exit Game (progress lost)")
-    answer = getInput()
+    answer = get_input()
     if answer == '1':
-        displayStats(player)
+        display_stats(player)
     elif answer == '2':
         inventory.print_items()
     elif answer == '3':
         print('this will be a shop.')
     elif answer == '4':
-        killGame()
+        kill_game()
     else:
         print('Unexpected answer. Try again')
         return

@@ -1,9 +1,9 @@
-from clearScreen import clearScreen
-from getInput import getInput
+from clearScreen import clear_screen
+from getInput import get_input
 
 
-def setUsername():
-    clearScreen()
+def set_username():
+    clear_screen()
     print("How are you called?")
-    set_username = getInput()
-    return set_username
+    username = get_input()
+    return username

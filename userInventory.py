@@ -1,4 +1,4 @@
-from continueScreen import continueScreen
+from continueScreen import continue_screen
 
 
 class Inventory(object):
@@ -20,5 +20,5 @@ class Inventory(object):
             if item.heal > 0:
                 print('Heal: {} HP'.format(item.heal))
             print('\n')
-        continueScreen()
+        continue_screen()
         return
