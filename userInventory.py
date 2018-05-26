@@ -22,9 +22,11 @@ class Inventory(object):
                 print('Attack: +{}'.format(item.attack))
             if item.armour > 0:
                 print('Armour: +{}'.format(item.armour))
-            print('Value: {} coins'.format(item.value))
             if item.heal > 0:
                 print('Heal: {} HP'.format(item.heal))
+            print('Buy Value: {} coins'.format(item.buy_value))
+            print('Sell Value: {} coins'.format(item.sell_value))
+
             print('\n')
         continue_screen()
         return

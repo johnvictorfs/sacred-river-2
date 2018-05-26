@@ -21,6 +21,8 @@ def game_menu():
         inventory.print_items()
     elif answer == '3':
         print('this will be a shop.')
+        inventory.add_item(iron_sword)
+        inventory.add_item(health_potion)
     elif answer == '4':
         kill_game()
     else:
