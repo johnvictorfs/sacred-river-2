@@ -22,20 +22,22 @@ from setUsername import set_username
 from continueScreen import continue_screen
 from killGame import kill_game
 
+inventory = Inventory()
+
 """
 Notes:
-    
     # Clearing screen
-clearScreen()
+clear_screen()
 
     # Press Enter to continue screen
-continueScreen()
+continue_screen()
 
     # Giving item to player
 inventory.add_item(item_name)
-"""
 
-inventory = Inventory()
+    # Removing item from player
+inventory.remove_item(item_name)
+"""
 
 
 def initial_screen():
