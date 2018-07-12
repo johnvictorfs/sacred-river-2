@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a3d1111e-3f63-4ee5-a43a-65a32f33b2f8" name="Default" comment="" />
+    <list default="true" id="a3d1111e-3f63-4ee5-a43a-65a32f33b2f8" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/sacredriver.py" beforeDir="false" afterPath="$PROJECT_DIR$/sacredriver.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,8 +21,8 @@
       <file leaf-file-name="sacredriver.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sacredriver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="54" column="64" lean-forward="true" selection-start-line="54" selection-start-column="64" selection-end-line="54" selection-end-column="64" />
+            <state relative-caret-position="255">
+              <caret line="15" column="21" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
               <folding>
                 <element signature="e#24#37#0" expanded="true" />
               </folding>
@@ -91,6 +93,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -127,6 +132,7 @@
     <option name="width" value="1346" />
     <option name="height" value="688" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -254,11 +260,11 @@
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="12" />
-      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.23133236" side_tool="true" visible="true" weight="0.19713831" />
+      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.23133236" side_tool="true" visible="true" weight="0.2798092" />
       <window_info anchor="bottom" id="Database Changes" order="2" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="1" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="1" />
       <window_info anchor="bottom" id="Python Console" order="3" />
-      <window_info anchor="bottom" id="Run" order="8" sideWeight="0.76866764" visible="true" weight="0.19713831" />
+      <window_info anchor="bottom" id="Run" order="8" sideWeight="0.76866764" visible="true" weight="0.2798092" />
       <window_info anchor="bottom" id="Terminal" order="4" />
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.24963397" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
@@ -535,8 +541,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sacredriver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="54" column="64" lean-forward="true" selection-start-line="54" selection-start-column="64" selection-end-line="54" selection-end-column="64" />
+        <state relative-caret-position="255">
+          <caret line="15" column="21" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
           <folding>
             <element signature="e#24#37#0" expanded="true" />
           </folding>
