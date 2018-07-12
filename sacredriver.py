@@ -78,5 +78,4 @@ def main_menu():
 
 if __name__ == '__main__':
     main()
-    inv.add_item(inventory.iron_sword)
     main_menu()
