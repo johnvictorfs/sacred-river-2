@@ -220,11 +220,16 @@ class Inventory:
 iron_sword = Item(name='Iron Sword', attack=5, buy_value=7, sell_value=3, item_type="Weapon")
 steel_sword = Item(name='Steel Sword', attack=9, buy_value=12, sell_value=6, item_type="Weapon")
 
+crimson_sword = Item(name='Crimson Sword', attack=14, buy_value=0, sell_value=0, item_type="Weapon")
+
 steel_armour = Item(name='Steel Armour', armour=4, buy_value=8, sell_value=3, item_type="Armour")
+
 
 item_list = [
     iron_sword,
     steel_sword,
+
+    crimson_sword,
 
     steel_armour
 ]

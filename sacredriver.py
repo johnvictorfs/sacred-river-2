@@ -68,7 +68,11 @@ def main_menu():
     elif answer is '4':
         player.display()
     elif answer is '5':
-        battle(player, random.choice(monster_list))
+        item_reward = battle(player, random.choice(monster_list))
+        try:
+            inv.add_item(item_reward)
+        except AttributeError:
+            pass
     elif answer is '6':
         userstats.save_game()
     elif answer is 'q':
