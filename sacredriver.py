@@ -5,7 +5,7 @@ import random
 # Local
 from setinfo import read_info
 from prompt import prompt
-from npcs import monster_list
+from npcs import low_level_monsters
 from battle import battle
 from userstats import player
 import userstats
@@ -37,7 +37,6 @@ This is a Terminal text-based RPG game made by {__author__}.
 
 Current build: {__version__}
 """
-inv = inventory.Inventory()
 
 
 def main():
@@ -46,33 +45,32 @@ def main():
 
 
 def main_menu():
-    print('--- Main menu ---')
-    print('-1: Game Shop')
-    print('-2: Inventory')
-    print('-3: Equipment')
-    print('-4: Stats')
-    print('-5: Fight Monsters')
-    print('-6: Save Game (WARNING - ONLY STATS ARE SAVED FOR NOW)')
-    print("-Q: Exit Game")
+    print("""
+ _________________________
+|        MAIN MENU        |
+| [ 1 ] Shop              |
+|                         |
+| [ 2 ] Inventory         |
+| [ 3 ] Equipment         |
+| [ 4 ] Stats             |
+|                         |
+| [ 5 ] Explore           |
+|                         |
+| [ 6 ] Save (Stats only) |
+| [ Q ] Quit              |
+|_________________________|
+    """)
     answer = prompt('\n>> ', '1', '2', '3', '4', '5', '6', 'q', 'Q', '', clear=False)
     if answer is '1':
-        bought_item = gameshop.display()
-        try:
-            inv.add_item(bought_item)
-        except AttributeError:
-            pass
+        gameshop.display()
     elif answer is '2':
-        inv.display_inventory(player)
+        inventory.inv.display_inventory(player)
     elif answer is '3':
-        inv.display_equipment(player)
+        inventory.inv.display_equipment(player)
     elif answer is '4':
         player.display()
     elif answer is '5':
-        item_reward = battle(player, random.choice(monster_list))
-        try:
-            inv.add_item(item_reward)
-        except AttributeError:
-            pass
+        battle(player, random.choice(low_level_monsters))
     elif answer is '6':
         userstats.save_game()
     elif answer is 'q':

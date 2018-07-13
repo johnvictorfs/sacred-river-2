@@ -3,8 +3,6 @@ import configparser
 import inventory
 from prompt import prompt
 
-inv = inventory.Inventory()
-
 STATUS_FILE = 'user_stats.ini'
 INVENTORY_FILE = 'inventory.ini'
 
@@ -44,14 +42,14 @@ def read_inventory_status(file=INVENTORY_FILE):
     else:
         for item in inventory_file['USER_INVENTORY']:
             for number in range(item.quantity):
-                inv.add_item(item, message=False)
+                inventory.inv.add_item(item, message=False)
 
     if inventory_file['USER_EQUIPMENT']['status'] is 'Empty':
         pass
     else:
         for item in inventory_file['USER_EQUIPMENT']:
-            inv.add_item(item, message=False)
-            inv.equip_item(item, message=False)
+            inventory.inv.add_item(item, message=False)
+            inventory.inv.equip_item(item, message=False)
 
 
 def create_save(name):
@@ -101,7 +99,7 @@ def save_game():
                             'gold': player.gold
                             }
 
-    inv.save_inventory()
+    inventory.inv.save_inventory()
 
     with open(STATUS_FILE, 'w') as config_file:
         config.write(config_file)

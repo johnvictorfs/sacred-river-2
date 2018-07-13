@@ -2,6 +2,7 @@
 from clear import clear_screen
 import inventory
 
+
 class Monster:
 
     def __init__(self, name, attack, defence, health, gold_drops=(), special_drop=None, special_drop_rate=0):
@@ -76,7 +77,7 @@ crimson_skeleton = Monster(name="Crimson Skeleton",
                            special_drop=inventory.crimson_sword,
                            special_drop_rate=1)
 
-monster_list = [
+low_level_monsters = [
     goblin_1,
     goblin_2,
     goblin_3,

@@ -98,6 +98,7 @@ class Inventory:
                 try:
                     pos = int(answer)-1
                     self.equip_item(armours[pos])
+                    prompt()
                 except IndexError:
                     print("Item not found.")
                     prompt()
@@ -124,6 +125,7 @@ class Inventory:
                 try:
                     pos = int(answer)-1
                     self.equip_item(weapons[pos])
+                    prompt()
                 except IndexError:
                     print("Item not found.")
                     prompt()
@@ -189,7 +191,10 @@ class Inventory:
                 print(f"+{item.armour} Defence")
             print(f"Sell value: {item.sell_value} Gold")
             print("--------\n")
-        answer = prompt("< Type '1' to unequip Weapon or '2' to unequip Armour, type 'Q' to go back. >", 'q', '1', '2')
+        print("1- Unequip Weapon")
+        print("2- Unequip Armour")
+        print("Q- Go back")
+        answer = prompt("\n\n>> ", 'Q', 'q', '1', '2')
         if answer is '1':
             for item in self.equipment.values():
                 if item.item_type is 'Weapon':
@@ -202,16 +207,18 @@ class Inventory:
     def save_inventory(self):
         """
         CURRENTLY NOT WORKING
+
+        REASON: NO CLUE
         :return:
         """
         config = configparser.ConfigParser()
         config['USER_INVENTORY'] = {}
         config['USER_EQUIPMENT'] = {}
         for item in self.items.values():
-            config['USER_INVENTORY'][item.name] = item.quantity
+            config['USER_INVENTORY'][str(item.name)] = str(item.quantity)
 
         for item in self.equipment.values():
-            config['USER_EQUIPMENT'][item.name] = item.item_type
+            config['USER_EQUIPMENT'][str(item.name)] = str(item.item_type)
 
         with open('inventory.ini', 'w') as config_file:
             config.write(config_file)
@@ -233,3 +240,5 @@ item_list = [
 
     steel_armour
 ]
+
+inv = Inventory()

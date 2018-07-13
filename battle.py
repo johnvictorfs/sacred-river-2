@@ -4,8 +4,6 @@ import random
 from prompt import prompt
 import inventory
 
-inv = inventory.Inventory()
-
 
 def battle(player, npc):
     """
@@ -15,11 +13,11 @@ def battle(player, npc):
     :return: int
     """
     weapon_attack = 0
-    for item in inv.equipment.values():
+    for item in inventory.inv.equipment.values():
         if item.item_type == 'Weapon':
             weapon_attack = item.attack
     armour_defence = 0
-    for item in inv.equipment.values():
+    for item in inventory.inv.equipment.values():
         if item.item_type == 'Armour':
             armour_defence = item.armour
     effective_player_defence = player.defence + armour_defence
@@ -76,10 +74,9 @@ def battle(player, npc):
     print(f"- Gold: {gold_reward}")
     print(f"- Other: {special_reward.name}")
     try:
-        inv.add_item(npc.special_drop)
+        inventory.inv.add_item(npc.special_drop)
     except AttributeError:
         pass
     player.gold += gold_reward
-    return special_reward
     prompt()
 
