@@ -72,10 +72,11 @@ def battle(player, npc):
     print(f"HP: {player.health}")
     print("- Rewards -")
     print(f"- Gold: {gold_reward}")
-    print(f"- Other: {special_reward.name}")
     try:
+        print(f"- Other: {special_reward.name}")
         inventory.inv.add_item(npc.special_drop)
     except AttributeError:
+        print("- Other: None")
         pass
     player.gold += gold_reward
     prompt()
