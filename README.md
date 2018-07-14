@@ -3,15 +3,27 @@ A simple terminal text-based RPG game made in Python 3.6
 
 Still not in very usable state.
 
+***
+
+# Preview
+
+![Main Menu](images/preview-menu.png)
+
+![Shop](images/preview-shop.png)
+
+***
+
 # To do:
 
 ### Bugs:
 
-- Can only equip an item from inventory if inventory has more than one item in it.
+- Can only equip an item if you have more than one item in it
+
+- Can only sell items if you have more than one item in it
 
 ### Features:
 
-- Library
+- In-game Library with books and stuff
 
 - Add Health potion to shop
     - Make it drinkable from inventory and when in combat
