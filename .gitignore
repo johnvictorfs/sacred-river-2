@@ -105,3 +105,10 @@ venv.bak/
 
 # PyCharm
 .idea
+
+# Local
+tests
+
+# Game saves
+inventory.ini
+user_stats.ini

@@ -75,8 +75,8 @@ class Inventory:
             print(f"Sell value: {item.sell_value} Gold")
         print("""
  _____________________
-| [ 1 ] Equip Armour  |
-| [ 2 ] Equip Weapon  |
+| [ 1 ] Equip Weapon  |
+| [ 2 ] Equip Armour  |
 |                     |
 | [ Q ] Go back       |
 |_____________________|
@@ -84,7 +84,40 @@ class Inventory:
         answer = prompt(">> ", 'Q', 'q', '1', '2')
         if answer is 'q':
             return
+
         if answer is '1':
+            clear_screen()
+            weapons = []
+            index = 1
+            for item in self.items.values():
+                if item.item_type is 'Weapon':
+                    weapons.append(item)
+            print("||| Weapons in Inventory |||")
+
+            for item in weapons:
+                print("________________________________")
+                print(f"[ {index} ] {item.name} (+{item.attack} Attack)")
+                index += 1
+            equip_options = ('q', 'Q')
+            for item_option in range(index):
+                equip_options += (str(item_option),)
+            print(f"\n[ 1-{index-1} Equip Weapon")
+            print("[ Q ] Go back")
+            answer = prompt("\n>> ", *equip_options)
+            if answer is 'q' or answer is 'Q':
+                return
+            else:
+                try:
+                    pos = int(answer) - 1
+                except TypeError:
+                    return
+                try:
+                    self.equip_item(weapons[pos])
+                except IndexError:
+                    print("Item not found.")
+                prompt()
+
+        if answer is '2':
             clear_screen()
             armours = []
             index = 1
@@ -96,38 +129,21 @@ class Inventory:
                 print("________________________________")
                 print(f"[ {index} ] {item.name} (+{item.armour} Armour)")
                 index += 1
-            print("\n[ Which Armour do you want to Equip? (Q to go Back) ]")
-            prompt("\n\n>> ", 'Q', 'q', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10')
+            equip_options = ('q', 'Q')
+            for item_option in range(index):
+                equip_options += (str(item_option),)
+            print(f"\n[ 1-{index-1} Equip Armour")
+            print("[ Q ] Go back")
+            answer = prompt("\n>> ", *equip_options)
             if answer is 'q' or answer is 'Q':
                 return
             else:
-                pos = int(answer)-1
+                try:
+                    pos = int(answer)-1
+                except TypeError:
+                    return
                 try:
                     self.equip_item(armours[pos])
-                except IndexError:
-                    print("Item not found.")
-                prompt()
-
-        if answer is '2':
-            clear_screen()
-            weapons = []
-            index = 1
-            for item in self.items.values():
-                if item.item_type is 'Weapon':
-                    weapons.append(item)
-            print("||| Weapons in Inventory |||")
-            for item in weapons:
-                print("________________________________")
-                print(f"[ {index} ] {item.name} (+{item.attack} Attack)")
-                index += 1
-            print("\n[ Which Weapon do you want to Equip? (Q to go Back) ]")
-            prompt("\n\n>> ", 'q', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10')
-            if answer is 'q' or answer is 'Q':
-                return
-            else:
-                pos = int(answer) - 1
-                try:
-                    self.equip_item(weapons[pos])
                 except IndexError:
                     print("Item not found.")
                 prompt()

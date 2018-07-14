@@ -51,13 +51,51 @@ def display():
             print(f"Cost: {item.buy_value}")
         index += 1
     print(f"\nYour Gold: [ {player.gold} ]")
-    print("\n[ Type the number of the item you wish to buy or 'Q' to go back ]")
-    answer = prompt("\n>> ",
-                    'q', 'Q', '1', '2', '3', '4', '5')
+    print(f"\n[ 1-{index-1} ] Buy Item ")
+    print("[ S ] Sell items ")
+    print("[ Q ] Go Back")
+    options_tuple = ('q', 'Q', 's', 'S')
+    for item_option in range(index):
+        options_tuple += (str(item_option),)
+    answer = prompt("\n>> ", *options_tuple)
     if answer is 'q' or answer is 'Q':
         return
+    if answer is 's' or answer is 'S':
+        if not inventory.inv.items.values():
+            print("You don't have any items to sell.")
+            prompt()
+            return
+        inventory_items_list = []
+        index = 1
+        for item in inventory.inv.items.values():
+            inventory_items_list.append(item)
+            print("________________________________")
+            if item.item_type is 'Armour':
+                print(f"[ {index} ] {item.name} (+{item.armour} Armour)")
+                print(f"Sell Value: {item.sell_value}")
+            if item.item_type is 'Weapon':
+                print(f"[ {index} ] {item.name} (+{item.attack} Attack)")
+                print(f"Cost: {item.sell_value}")
+            index += 1
+        print(f"\nYour Gold: {player.gold}")
+        print(f"\n[ 1-{index-1} ] Sell Item")
+        print("[ Q ] Go back")
+        options_tuple = ('q', 'Q')
+        for item_option in range(index):
+            options_tuple += (str(item_option),)
+        answer = prompt("\n>> ", *options_tuple)
+        if answer is 'q' or answer is 'Q':
+            return
+        try:
+            pos = int(answer) - 1
+            sell_item(inventory_items_list[pos])
+            return
+        except IndexError or TypeError:
+            print("Item not found.")
+            return
     try:
-        buy_item(shop_entries[int(answer) - 1])
-    except IndexError:
+        pos = int(answer) - 1
+        buy_item(shop_entries[pos])
+    except IndexError or TypeError:
         print("Item not found.")
         prompt()
