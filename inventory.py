@@ -7,11 +7,12 @@ from clear import clear_screen
 
 class Item:
 
-    def __init__(self, name, attack=0, armour=0, buy_value=0, sell_value=0, heal_value=0, item_type='', quantity=0):
+    def __init__(self, name, id, attack=0, armour=0, buy_value=0, sell_value=0, heal_value=0, item_type='', quantity=0):
         """
         Item type can be: "Weapon", "Armour", "Health_Potion"
 
         :param name: str
+        :param id: int
         :param attack: int
         :param armour: int
         :param buy_value: int
@@ -20,6 +21,7 @@ class Item:
         :param item_type: str
         """
         self.name = name
+        self.id = id
         self.attack = attack
         self.armour = armour
         self.buy_value = buy_value
@@ -85,54 +87,50 @@ class Inventory:
         if answer is '1':
             clear_screen()
             armours = []
-            entry = 1
+            index = 1
             for item in self.items.values():
                 if item.item_type is 'Armour':
                     armours.append(item)
             print("||| Armours in Inventory |||")
             for item in armours:
                 print("________________________________")
-                print(f"[ {entry} ] {item.name} (+{item.armour} Armour)")
-                entry += 1
-            print("[ Which Armour do you want to Equip? (Q to go Back) ]")
+                print(f"[ {index} ] {item.name} (+{item.armour} Armour)")
+                index += 1
+            print("\n[ Which Armour do you want to Equip? (Q to go Back) ]")
             prompt("\n\n>> ", 'Q', 'q', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10')
             if answer.lower() is 'q':
                 return
             else:
+                pos = int(answer)-1
                 try:
-                    pos = int(answer)-1
                     self.equip_item(armours[pos])
-                    prompt()
                 except IndexError:
                     print("Item not found.")
-                    prompt()
-                    return
+                prompt()
 
         if answer is '2':
             clear_screen()
             weapons = []
-            entry = 1
+            index = 1
             for item in self.items.values():
                 if item.item_type is 'Weapon':
                     weapons.append(item)
             print("||| Weapons in Inventory |||")
             for item in weapons:
                 print("________________________________")
-                print(f"[ {entry} ] {item.name} (+{item.attack} Attack)")
-                entry += 1
-            print("[ Which Weapon do you want to Equip? (Q to go Back) ]")
+                print(f"[ {index} ] {item.name} (+{item.attack} Attack)")
+                index += 1
+            print("\n[ Which Weapon do you want to Equip? (Q to go Back) ]")
             prompt("\n\n>> ", 'q', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10')
             if answer is 'q':
                 return
             else:
+                pos = int(answer) - 1
                 try:
-                    pos = int(answer)-1
                     self.equip_item(weapons[pos])
-                    prompt()
                 except IndexError:
                     print("Item not found.")
-                    prompt()
-                    return
+                prompt()
 
     def equip_item(self, item, message=True):
         if item.name in self.items:
@@ -171,76 +169,64 @@ class Inventory:
 
     def unequip_item(self, item, message=True):
         if item.name in self.equipment:
-            self.add_item(item)
+            del self.equipment[item.name]
             if message is True:
-                print(f"Unequipped {item.name} and added it to Inventory.")
+                print(f"Unequipped {item.name}.")
+            if item.item_type is 'Armour':
+                self.armour_equipped = False
+            if item.item_type is 'Weapon':
+                self.weapon_equipped = False
+            self.add_item(item)
         else:
             if message is True:
                 print(f"Error, {item.name} not in Equipment.")
 
     def display_equipment(self, player):
         print(f"||| Equipment of {player.name} |||")
-        entry = 0
         if not self.equipment:
             print(f"{player.name} has no items equipped!")
             prompt()
             return
+        index = 1
         for item in self.equipment.values():
-            entry += 1
-            print(f"- Item {entry} {item.name} - ")
+            print("________________________________")
             if item.item_type is 'Weapon':
-                print(f"+{item.attack} Attack")
+                print(f"[ {index} ] {item.name} (+{item.attack} Attack)")
+                index += 1
             if item.item_type is 'Armour':
-                print(f"+{item.armour} Defence")
+                print(f"[ {index} ] {item.name} (+{item.armour} Armour)")
             print(f"Sell value: {item.sell_value} Gold")
-            print("--------\n")
-        print("1- Unequip Weapon")
-        print("2- Unequip Armour")
-        print("Q- Go back")
+            index += 1
+        print("""
+________________________
+| [ 1 ] Unequip Weapon  |
+| [ 2 ] Unequip Armour  |
+|                       |
+| [ Q ] Go back         |
+|_______________________|
+        """)
         answer = prompt("\n\n>> ", 'Q', 'q', '1', '2')
         if answer is '1':
             for item in self.equipment.values():
                 if item.item_type is 'Weapon':
                     self.unequip_item(item)
+                    prompt()
         elif answer is '2':
             for item in self.equipment.values():
                 if item.item_type is 'Armour':
                     self.unequip_item(item)
-
-    def save_inventory(self):
-        """
-        CURRENTLY NOT WORKING
-
-        REASON: NO CLUE
-        :return:
-        """
-        config = configparser.ConfigParser()
-        config['USER_INVENTORY'] = {}
-        config['USER_EQUIPMENT'] = {}
-        for item in self.items.values():
-            config['USER_INVENTORY'][str(item.name)] = str(item.quantity)
-
-        for item in self.equipment.values():
-            config['USER_EQUIPMENT'][str(item.name)] = str(item.item_type)
-
-        with open('inventory.ini', 'w') as config_file:
-            config.write(config_file)
+                    prompt()
 
 
-iron_sword = Item(name='Iron Sword', attack=5, buy_value=7, sell_value=3, item_type="Weapon")
-steel_sword = Item(name='Steel Sword', attack=9, buy_value=12, sell_value=6, item_type="Weapon")
-
-crimson_sword = Item(name='Crimson Sword', attack=14, buy_value=0, sell_value=0, item_type="Weapon")
-
-steel_armour = Item(name='Steel Armour', armour=4, buy_value=8, sell_value=3, item_type="Armour")
-
+iron_sword = Item(name='Iron Sword', id=1, attack=5, buy_value=7, sell_value=3, item_type="Weapon")
+steel_sword = Item(name='Steel Sword', id=2, attack=9, buy_value=12, sell_value=6, item_type="Weapon")
+crimson_sword = Item(name='Crimson Sword', id=3, attack=14, buy_value=0, sell_value=0, item_type="Weapon")
+steel_armour = Item(name='Steel Armour', id=4, armour=4, buy_value=8, sell_value=3, item_type="Armour")
 
 item_list = [
     iron_sword,
     steel_sword,
-
     crimson_sword,
-
     steel_armour
 ]
 

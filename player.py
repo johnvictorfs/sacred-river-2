@@ -12,7 +12,7 @@ class Player(object):
         self.health = int(health)
         self.gold = int(gold)
 
-    def display(self):
+    def display_stats(self):
         clear_screen()
         print(f"""
 --- Displaying stats of {self.name} ---

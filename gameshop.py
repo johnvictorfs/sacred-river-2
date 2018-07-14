@@ -2,12 +2,11 @@
 import inventory
 from clear import clear_screen
 from prompt import prompt
-from userstats import player
+from usersave import player
 
-entries = [
+shop_entries = [
     inventory.iron_sword,
     inventory.steel_sword,
-
     inventory.steel_armour
 ]
 
@@ -19,9 +18,11 @@ def buy_item(item):
         print(f"{player.name} Gold: {player.gold}")
         inventory.inv.add_item(item)
         prompt()
+        display()
     else:
         print("Hey, you don't have enough money to buy that!")
         prompt()
+        display()
 
 
 def sell_item(item):
@@ -39,24 +40,24 @@ def sell_item(item):
 def display():
     clear_screen()
     print("||| Shop |||")
-    print(f"Your Gold: [{player.gold}]")
-    entry = 1
-    for item in entries:
+    index = 1
+    for item in shop_entries:
         print("________________________________")
         if item.item_type is 'Armour':
-            print(f"[ {entry} ] {item.name} (+{item.armour} Armour)")
+            print(f"[ {index} ] {item.name} (+{item.armour} Armour)")
             print(f"Cost: {item.buy_value}")
         if item.item_type is 'Weapon':
-            print(f"[ {entry} ] {item.name} (+{item.attack} Attack)")
+            print(f"[ {index} ] {item.name} (+{item.attack} Attack)")
             print(f"Cost: {item.buy_value}")
-        entry += 1
+        index += 1
+    print(f"\nYour Gold: [ {player.gold} ]")
     print("\n[ Type the number of the item you wish to buy or 'Q' to go back ]")
     answer = prompt("\n>> ",
                     'q', 'Q', '1', '2', '3', '4', '5')
     if answer.lower() == 'q':
         return
     try:
-        buy_item(entries[int(answer)-1])
+        buy_item(shop_entries[int(answer) - 1])
     except IndexError:
         print("Item not found.")
         prompt()

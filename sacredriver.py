@@ -7,8 +7,8 @@ from setinfo import read_info
 from prompt import prompt
 from npcs import low_level_monsters
 from battle import battle
-from userstats import player
-import userstats
+from usersave import player
+import usersave
 import inventory
 import gameshop
 
@@ -60,11 +60,13 @@ def main_menu():
 |                         |
 | [ 5 ] Explore           |
 |                         |
-| [ 6 ] Save (Stats only) |
+| [ 6 ] Save              |
+|                         |
+| [ R ] Reset Save        |
 | [ Q ] Quit              |
 |_________________________|
     """)
-    answer = prompt('\n>> ', '1', '2', '3', '4', '5', '6', 'q', 'Q', '', clear=False)
+    answer = prompt('\n>> ', '1', '2', '3', '4', '5', '6', 'r', 'R', 'q', 'Q', '')
     if answer is '1':
         gameshop.display()
     elif answer is '2':
@@ -72,11 +74,15 @@ def main_menu():
     elif answer is '3':
         inventory.inv.display_equipment(player)
     elif answer is '4':
-        player.display()
+        player.display_stats()
     elif answer is '5':
         battle(player, random.choice(low_level_monsters))
     elif answer is '6':
-        userstats.save_game()
+        usersave.save_game()
+    elif answer is 'r':
+        print("Hey, i'm still working on that :/")
+        print("Reset your save manually by deleting 'inventory.ini' and 'user_stats.ini' and run the game again")
+        prompt()
     elif answer is 'q':
         exit(0)
     main_menu()

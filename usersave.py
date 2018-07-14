@@ -37,19 +37,17 @@ def read_save_status(file=STATUS_FILE):
 def read_inventory_status(file=INVENTORY_FILE):
     inventory_file = configparser.ConfigParser()
     inventory_file.read(file)
-    if inventory_file['USER_INVENTORY']['status'] is 'Empty':
-        pass
-    else:
-        for item in inventory_file['USER_INVENTORY']:
-            for number in range(item.quantity):
-                inventory.inv.add_item(item, message=False)
 
-    if inventory_file['USER_EQUIPMENT']['status'] is 'Empty':
-        pass
-    else:
-        for item in inventory_file['USER_EQUIPMENT']:
-            inventory.inv.add_item(item, message=False)
-            inventory.inv.equip_item(item, message=False)
+    for key in inventory_file['USER_INVENTORY']:
+        for item in inventory.item_list:
+            if str(key) == str(item.id):
+                for quantity in range(int(inventory_file['USER_INVENTORY'][key])):
+                    inventory.inv.add_item(item, message=False)
+    for key in inventory_file['USER_EQUIPMENT']:
+        for item in inventory.item_list:
+            if str(key) == str(item.id):
+                inventory.inv.add_item(item, message=False)
+                inventory.inv.equip_item(item, message=False)
 
 
 def create_save(name):
@@ -73,6 +71,7 @@ def create_save(name):
 def create_user_data():
     if settings_exist():
         user = read_save_status(file=STATUS_FILE)
+        read_inventory_status()
         if user.health <= 0:
             create_save(user.name)
             user = read_save_status(file=STATUS_FILE)
@@ -85,11 +84,7 @@ def create_user_data():
     return user
 
 
-player = create_user_data()
-
-
-def save_game():
-    print("--- Saving game... ---")
+def save_stats():
     config = configparser.ConfigParser()
 
     config['USER_STATS'] = {'name': player.name,
@@ -98,11 +93,32 @@ def save_game():
                             'health': player.health,
                             'gold': player.gold
                             }
-
-    inventory.inv.save_inventory()
-
     with open(STATUS_FILE, 'w') as config_file:
         config.write(config_file)
-        print("- Game Saved -")
-        prompt()
-        return
+
+
+def save_inventory():
+    config = configparser.ConfigParser()
+
+    config['USER_INVENTORY'] = {}
+    config['USER_EQUIPMENT'] = {}
+
+    for item in inventory.inv.items.values():
+        config['USER_INVENTORY'][str(item.id)] = str(item.quantity)
+
+    for item in inventory.inv.equipment.values():
+        config['USER_EQUIPMENT'][str(item.id)] = str(item.item_type)
+
+    with open('inventory.ini', 'w') as config_file:
+        config.write(config_file)
+
+
+def save_game():
+    print("[[[ Saving game... ]]]")
+    save_stats()
+    save_inventory()
+    print("[ Game Saved ]")
+    prompt()
+
+
+player = create_user_data()
