@@ -27,11 +27,11 @@ Still not in very usable state.
 
 - ~~Add Health potion to shop~~
     - ~~Make it drinkable from inventory~~
-    - Make it drinkable in combat
+    - ~~Make it drinkable in combat~~
     
 - Add more combat functions
-    - Run
-    - Drink HP potions
+    - ~~Run~~
+    - ~~Drink HP potions~~
     - Equip/Unequip items (possibly unnecessary)
     - Different combat stances?
         - Defensive/Aggressive/Accurate

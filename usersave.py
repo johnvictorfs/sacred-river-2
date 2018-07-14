@@ -28,8 +28,9 @@ def read_save_status(file=STATUS_FILE):
     user_defence = status_file['USER_STATS']['defence']
     user_health = status_file['USER_STATS']['health']
     user_gold = status_file['USER_STATS']['gold']
+    user_luck = status_file['USER_STATS']['luck']
 
-    player_save = Player(user_name, user_attack, user_defence, user_health, user_gold)
+    player_save = Player(user_name, user_attack, user_defence, user_health, user_gold, user_luck)
 
     return player_save
 
@@ -59,7 +60,8 @@ def create_save(name):
                             'attack': 10,
                             'defence': 0,
                             'health': 50,
-                            'gold': 20
+                            'gold': 20,
+                            'luck': 1
                             }
 
     if settings_exist(file=STATUS_FILE):

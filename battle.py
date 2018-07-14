@@ -2,6 +2,7 @@ import random
 
 # Local
 from prompt import prompt
+from clear import clear_screen
 import inventory
 
 
@@ -56,17 +57,45 @@ ______ {player.name} Vs {npc.name} ______
 __________________________________________
 
     """)
-        prompt()
-
         if player.health <= 0:
             player.death()
         if npc.health <= 0:
             break
+        print("[ 1 ] Attack")
+        print("[ 2 ] Drink HP Potion")
+        print(f"[ Q ] Run Away! ({player.luck} roll(s) at a 1/5 Chance)")
+        answer = prompt("\n>> ")
+        if answer is '1':
+            pass
+        elif answer is '2':
+            found = False
+            for item in inventory.inv.items.values():
+                if item.item_type is 'Health_Potion':
+                    inventory.inv.drink_potion(item, player)
+                    found = True
+                    pass
+            if found is False:
+                print("You don't have any Health Potions.")
+                prompt()
+            pass
+        if answer is 'q' or answer is 'Q':
+            for number in range(player.luck):
+                run_away = random.randint(0, 5)
+                if run_away is 5:
+                    clear_screen()
+                    print("You ran away successfully. What a coward!")
+                    prompt()
+                    return
+            clear_screen()
+            print("You couldn't get away! Tough luck.")
+            prompt()
+
     gold_reward = random.randint(0, npc.gold_drops)
-    roll_special = random.randint(0, npc.extra_drop_rate)
     extra_reward = "None"
-    if npc.extra_drop_rate == roll_special:
-        extra_reward = npc.extra_drop
+    for number in range(player.luck):
+        roll_special = random.randint(0, npc.extra_drop_rate)
+        if npc.extra_drop_rate == roll_special:
+            extra_reward = npc.extra_drop
 
     print(f"- {player.name} beat {npc.name} successfully and won -")
     print(f"HP: {player.health}/{player.max_health}")
