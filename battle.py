@@ -100,6 +100,29 @@ __________________________________________
     print(f"HP: {player.health}/{player.max_health}")
     print("- Rewards -")
     print(f"- Gold: {gold_reward}")
+
+    roll_level_hp = random.randint(0, 50)
+    if roll_level_hp is 50:
+        old_health = player.max_health
+        player.max_health += random.randint(5, 15)
+        player.health = player.max_health
+        print(f"\n* LEVEL UP: Your Max health is now {player.max_health} (from {old_health}).")
+        print("- Your HP has also been healed to Maximum. -")
+    roll_level_luck = random.randint(0, 50)
+    if roll_level_luck is 50:
+        old_luck = player.luck
+        player.luck += random.randint(1, 3)
+        print(f"\n* LEVEL UP: Your Luck is now {player.luck} (from {old_luck}).")
+    roll_level_attack = random.randint(0, 50)
+    if roll_level_attack is 50:
+        old_attack = player.attack
+        player.attack += random.randint(1, 4)
+        print(f"\n* LEVEL UP: Your Attack is now {player.attack} (from {old_attack}).")
+    roll_level_defence = random.randint(0, 50)
+    if roll_level_defence is 50:
+        old_defence = player.defence
+        player.defence += random.randint(2, 6)
+        print(f"\n* LEVEL UP: Your Defence is now {player.defence} (from {old_defence}).")
     try:
         print(f"- Other: {extra_reward.name}")
         inventory.inv.add_item(npc.special_drop)
