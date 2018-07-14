@@ -67,17 +67,18 @@ class Inventory:
     def drink_potion(self, item, player, message=True):
         if item.name in self.items:
             if item.item_type is 'Health_Potion':
+                start_health = player.health
                 if player.health == player.max_health:
                     print(f"You already have max health! ({player.max_health})")
                     prompt()
                     return
                 player.health += item.heal_value
-
                 if player.health > player.max_health:
                     player.health = player.max_health
+                final_health = player.health
                 if message is True:
-                    print(f"{player.name} drank {item.name} and gained {item.heal_value} HP.")
-                    print(f"Current HP: {player.health}")
+                    print(f"{player.name} drank {item.name} and gained {final_health-start_health} HP.")
+                    print(f"Current HP: {player.health}/{player.max_health}")
                 self.remove_item(item)
                 prompt()
         else:

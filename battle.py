@@ -73,11 +73,10 @@ __________________________________________
                 if item.item_type is 'Health_Potion':
                     inventory.inv.drink_potion(item, player)
                     found = True
-                    pass
+                    break
             if found is False:
                 print("You don't have any Health Potions.")
                 prompt()
-            pass
         if answer is 'q' or answer is 'Q':
             for number in range(player.luck):
                 run_away = random.randint(0, 5)
