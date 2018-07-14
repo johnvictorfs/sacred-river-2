@@ -96,7 +96,8 @@ def save_stats():
                             'attack': player.attack,
                             'defence': player.defence,
                             'health': player.health,
-                            'gold': player.gold
+                            'gold': player.gold,
+                            'luck': player.luck
                             }
     with open(STATUS_FILE, 'w') as config_file:
         config.write(config_file)

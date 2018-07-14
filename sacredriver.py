@@ -52,6 +52,7 @@ def main_menu():
     print("""
  _________________________
 |        MAIN MENU        |
+|                         |
 | [ 1 ] Shop              |
 |                         |
 | [ 2 ] Inventory         |
