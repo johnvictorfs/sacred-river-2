@@ -288,18 +288,53 @@ ________________________
                     return
 
 
-iron_sword = Item(name='Iron Sword', item_id=1, attack=5, buy_value=7, sell_value=3, item_type="Weapon")
-steel_sword = Item(name='Steel Sword', item_id=2, attack=9, buy_value=12, sell_value=6, item_type="Weapon")
-crimson_sword = Item(name='Crimson Sword', item_id=3, attack=14, buy_value=0, sell_value=0, item_type="Weapon")
-steel_armour = Item(name='Steel Armour', item_id=4, armour=4, buy_value=8, sell_value=3, item_type="Armour")
-health_potion = Item(name='Health Potion', item_id=5, buy_value=6, sell_value=2, heal_value=15, item_type="Health_Potion")
+iron_sword = Item(name='Iron Sword',
+                  item_id=1,
+                  attack=5,
+                  buy_value=7,
+                  sell_value=3,
+                  item_type="Weapon")
+
+steel_sword = Item(name='Steel Sword',
+                   item_id=2,
+                   attack=9,
+                   buy_value=12,
+                   sell_value=6,
+                   item_type="Weapon")
+
+crimson_sword = Item(name='Crimson Sword',
+                     item_id=3,
+                     attack=14,
+                     sell_value=20,
+                     item_type="Weapon")
+
+steel_armour = Item(name='Steel Armour',
+                    item_id=4,
+                    armour=4,
+                    buy_value=8,
+                    sell_value=3,
+                    item_type="Armour")
+
+health_potion = Item(name='Health Potion',
+                     item_id=5,
+                     buy_value=6,
+                     sell_value=2,
+                     heal_value=15,
+                     item_type="Health_Potion")
+
+crimson_staff = Item(name="Crimson Staff",
+                     item_id=6,
+                     sell_value=15,
+                     item_type="Weapon"
+                     )
 
 item_list = [
     iron_sword,
     steel_sword,
     crimson_sword,
     steel_armour,
-    health_potion
+    health_potion,
+    crimson_staff
 ]
 
 inv = Inventory()

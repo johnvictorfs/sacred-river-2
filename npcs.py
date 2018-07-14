@@ -81,6 +81,14 @@ crimson_skeleton_1 = Monster(name="Crimson Skeleton",
                              extra_drop=inventory.crimson_sword,
                              extra_drop_rate=1)
 
+crimson_mage_1 = Monster(name="Crimson Mage",
+                         attack=17,
+                         defence=8,
+                         health=15,
+                         gold_drops=10,
+                         extra_drop=inventory.crimson_staff,
+                         extra_drop_rate=2)
+
 low_level_monsters = [
     goblin_1,
     goblin_2,
@@ -90,5 +98,6 @@ low_level_monsters = [
     spider_2,
     spider_3,
 
-    crimson_skeleton_1
+    crimson_skeleton_1,
+    crimson_mage_1
 ]
