@@ -38,20 +38,20 @@ def sell_item(item):
 
 def display():
     clear_screen()
-    print("--- Game Shop ---")
-    print(f"Current Gold: {player.gold}")
+    print("||| Shop |||")
+    print(f"Your Gold: [{player.gold}]")
     entry = 1
     for item in entries:
-        print("---")
-        print(f"Item [ {entry} ] {item.name}")
-        print(f"Cost: [ {item.buy_value} ] Gold")
+        print("________________________________")
         if item.item_type is 'Armour':
-            print(f"Defence bonus: {item.armour}")
+            print(f"[ {entry} ] {item.name} (+{item.armour} Armour)")
+            print(f"Cost: {item.buy_value}")
         if item.item_type is 'Weapon':
-            print(f"Attack bonus: {item.attack}")
-        print("")
+            print(f"[ {entry} ] {item.name} (+{item.attack} Attack)")
+            print(f"Cost: {item.buy_value}")
         entry += 1
-    answer = prompt("< Type the number of the item you wish to buy or 'Q' to go back >",
+    print("\n[ Type the number of the item you wish to buy or 'Q' to go back ]")
+    answer = prompt("\n>> ",
                     'q', 'Q', '1', '2', '3', '4', '5')
     if answer.lower() == 'q':
         return

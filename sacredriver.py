@@ -32,10 +32,14 @@ prompt(text, key1, key2, key3, key4 (...))  # Asks for user input with (text) an
 """
 
 START_TEXT = f"""
-- Welcome to Sacred River 2 - 
-This is a Terminal text-based RPG game made by {__author__}.
+ _______________________________________________________________
+|                   Welcome to Sacred River 2                   |
+|                                                               |
+|  This is a Terminal text-based RPG game made by {__author__}.  |
+|                                                               |
+|_______________________________________________________________|
 
-Current build: {__version__}
+[ Current build: {__version__} ]
 """
 
 

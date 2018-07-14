@@ -56,25 +56,30 @@ class Inventory:
                 print(f"Error, {item.name} not in Inventory.")
 
     def display_inventory(self, player):
-        print(f"--- Displaying Inventory of {player.name} ---")
+        print(f"||| Inventory of {player.name} |||")
         if not self.items:
-            print(f"Inventory of {player.name} is empty!")
+            print(f"\nInventory of {player.name} is empty!")
             prompt()
             return
         for item in self.items.values():
-            print(f"- x{item.quantity} {item.name} - ")
+            print("________________________________")
+
             if item.item_type is 'Weapon':
-                print(f"+{item.attack} Attack")
+                print(f"[ x{item.quantity} {item.name} ] (+{item.attack} Attack)")
             if item.item_type is 'Armour':
-                print(f"+{item.armour} Defence")
+                print(f"[ x{item.quantity} {item.name} ] (+{item.armour} Armour)")
             if item.item_type is 'Health_Potion':
-                print(f"+{item.health_value} Heal")
+                print(f"[ x{item.quantity} {item.name} ] (+{item.heal_value} Health)")
             print(f"Sell value: {item.sell_value} Gold")
-            print("--------\n")
-        print("1- Equip Armour")
-        print("2- Equip Weapon")
-        print("Q- Go back")
-        answer = prompt("\n\n>> ", 'q', '1', '2')
+        print("""
+ _____________________
+| [ 1 ] Equip Armour  |
+| [ 2 ] Equip Weapon  |
+|                     |
+| [ Q ] Go back       |
+|_____________________|
+        """)
+        answer = prompt(">> ", 'Q', 'q', '1', '2')
         if answer is 'q':
             return
         if answer is '1':
@@ -84,13 +89,12 @@ class Inventory:
             for item in self.items.values():
                 if item.item_type is 'Armour':
                     armours.append(item)
-            print("--- Armours in Inventory ---")
+            print("||| Armours in Inventory |||")
             for item in armours:
-                print(f"-{entry}: {item.name}")
-                print(f"+{item.armour} Armour")
-                print("--------\n")
+                print("________________________________")
+                print(f"[ {entry} ] {item.name} (+{item.armour} Armour)")
                 entry += 1
-            print("- Which Armour do you want to Equip? (Q to go Back)-")
+            print("[ Which Armour do you want to Equip? (Q to go Back) ]")
             prompt("\n\n>> ", 'Q', 'q', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10')
             if answer.lower() is 'q':
                 return
@@ -111,13 +115,12 @@ class Inventory:
             for item in self.items.values():
                 if item.item_type is 'Weapon':
                     weapons.append(item)
-            print("--- Weapons in Inventory ---")
+            print("||| Weapons in Inventory |||")
             for item in weapons:
-                print(f"-{entry}: {item.name}")
-                print(f"+{item.attack} Attack")
-                print("--------\n")
+                print("________________________________")
+                print(f"[ {entry} ] {item.name} (+{item.attack} Attack)")
                 entry += 1
-            print("- Which Weapon do you want to Equip? (Q to go Back)-")
+            print("[ Which Weapon do you want to Equip? (Q to go Back) ]")
             prompt("\n\n>> ", 'q', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10')
             if answer is 'q':
                 return
@@ -176,7 +179,7 @@ class Inventory:
                 print(f"Error, {item.name} not in Equipment.")
 
     def display_equipment(self, player):
-        print(f"--- Displaying Equipment of {player.name} ---")
+        print(f"||| Equipment of {player.name} |||")
         entry = 0
         if not self.equipment:
             print(f"{player.name} has no items equipped!")
