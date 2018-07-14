@@ -12,6 +12,18 @@ A simple terminal text-based RPG game made in Python 3.6
 
 ***
 
+# Requirements
+
+- None besides Python 3.6+, 100% Pure Python
+
+***
+
+# Running
+
+- Just do `python sacredriver.py` (`python3 sacredriver.py` on Linux) nothing special to it
+
+***
+
 # To do:
 
 ### Bugs:

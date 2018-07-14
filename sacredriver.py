@@ -3,7 +3,6 @@
 import random
 
 # Local
-from setinfo import read_info
 from prompt import prompt
 from npcs import low_level_monsters
 from battle import battle
@@ -14,7 +13,6 @@ import gameshop
 
 __author__ = 'John Victor'
 __version__ = 'Alpha 0.3'
-(__description__, __long_description__) = read_info()
 
 """ Dev Notes:
 
