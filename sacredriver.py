@@ -81,7 +81,7 @@ def main_menu():
         battle(player, random.choice(low_level_monsters))
     elif answer is '6':
         usersave.save_game()
-    elif answer is 'r':
+    elif answer is 'r' or answer is 'R':
         print("Hey, i'm still working on that :/")
         print("Reset your save manually by deleting 'inventory.ini' and 'user_stats.ini' and run the game again")
         prompt()

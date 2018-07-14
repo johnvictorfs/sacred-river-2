@@ -7,7 +7,8 @@ from usersave import player
 shop_entries = [
     inventory.iron_sword,
     inventory.steel_sword,
-    inventory.steel_armour
+    inventory.steel_armour,
+    inventory.health_potion
 ]
 
 
@@ -48,6 +49,9 @@ def display():
             print(f"Cost: {item.buy_value}")
         if item.item_type is 'Weapon':
             print(f"[ {index} ] {item.name} (+{item.attack} Attack)")
+            print(f"Cost: {item.buy_value}")
+        if item.item_type is 'Health_Potion':
+            print(f"[ {index} ] {item.name} (+{item.heal_value} Health)")
             print(f"Cost: {item.buy_value}")
         index += 1
     print(f"\nYour Gold: [ {player.gold} ]")

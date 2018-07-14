@@ -1,5 +1,3 @@
-import configparser
-
 # Local
 from prompt import prompt
 from clear import clear_screen
@@ -7,12 +5,21 @@ from clear import clear_screen
 
 class Item:
 
-    def __init__(self, name, id, attack=0, armour=0, buy_value=0, sell_value=0, heal_value=0, item_type='', quantity=0):
+    def __init__(self,
+                 name,
+                 item_id,
+                 attack=0,
+                 armour=0,
+                 buy_value=0,
+                 sell_value=0,
+                 heal_value=0,
+                 item_type='',
+                 quantity=0):
         """
         Item type can be: "Weapon", "Armour", "Health_Potion"
 
         :param name: str
-        :param id: int
+        :param item_id: int
         :param attack: int
         :param armour: int
         :param buy_value: int
@@ -21,7 +28,7 @@ class Item:
         :param item_type: str
         """
         self.name = name
-        self.id = id
+        self.id = item_id
         self.attack = attack
         self.armour = armour
         self.buy_value = buy_value
@@ -57,6 +64,27 @@ class Inventory:
             if message is True:
                 print(f"Error, {item.name} not in Inventory.")
 
+    def drink_potion(self, item, player, message=True):
+        if item.name in self.items:
+            if item.item_type is 'Health_Potion':
+                if player.health == player.max_health:
+                    print(f"You already have max health! ({player.max_health})")
+                    prompt()
+                    return
+                player.health += item.heal_value
+
+                if player.health > player.max_health:
+                    player.health = player.max_health
+                if message is True:
+                    print(f"{player.name} drank {item.name} and gained {item.heal_value} HP.")
+                    print(f"Current HP: {player.health}")
+                self.remove_item(item)
+                prompt()
+        else:
+            if message is True:
+                print("You don't have that potion.")
+                prompt()
+
     def display_inventory(self, player):
         print(f"||| Inventory of {player.name} |||")
         if not self.items:
@@ -77,11 +105,12 @@ class Inventory:
  _____________________
 | [ 1 ] Equip Weapon  |
 | [ 2 ] Equip Armour  |
+| [ 3 ] Drink Potion  |
 |                     |
 | [ Q ] Go back       |
 |_____________________|
         """)
-        answer = prompt(">> ", 'Q', 'q', '1', '2')
+        answer = prompt(">> ", 'q', 'Q', '1', '2', '3')
         if answer is 'q':
             return
 
@@ -147,6 +176,32 @@ class Inventory:
                 except IndexError:
                     print("Item not found.")
                 prompt()
+        if answer is '3':
+            clear_screen()
+            index = 1
+            item_options = []
+            print(f"||| Current Health: {player.health}/{player.max_health} |||\n")
+            for item in self.items.values():
+                if item.item_type is 'Health_Potion':
+                    item_options.append(item)
+                    print("________________________________")
+                    print(f"[ {index} ] {item.name} (+{item.heal_value} Health)")
+                    index += 1
+            drink_options = ('q', 'Q')
+            for item_option in range(index):
+                drink_options += (str(item_option),)
+            print(f"\n[ 1-{index-1} ] Drink Potion")
+            print("[ Q ] Go back")
+            answer = prompt("\n>> ", *drink_options)
+            if answer is 'q' or answer is 'Q':
+                return
+            try:
+                pos = int(answer) - 1
+                self.drink_potion(item_options[pos], player)
+            except IndexError or TypeError:
+                print("Item not found.")
+                prompt()
+                return
 
     def equip_item(self, item, message=True):
         if item.name in self.items:
@@ -239,16 +294,18 @@ ________________________
                     return
 
 
-iron_sword = Item(name='Iron Sword', id=1, attack=5, buy_value=7, sell_value=3, item_type="Weapon")
-steel_sword = Item(name='Steel Sword', id=2, attack=9, buy_value=12, sell_value=6, item_type="Weapon")
-crimson_sword = Item(name='Crimson Sword', id=3, attack=14, buy_value=0, sell_value=0, item_type="Weapon")
-steel_armour = Item(name='Steel Armour', id=4, armour=4, buy_value=8, sell_value=3, item_type="Armour")
+iron_sword = Item(name='Iron Sword', item_id=1, attack=5, buy_value=7, sell_value=3, item_type="Weapon")
+steel_sword = Item(name='Steel Sword', item_id=2, attack=9, buy_value=12, sell_value=6, item_type="Weapon")
+crimson_sword = Item(name='Crimson Sword', item_id=3, attack=14, buy_value=0, sell_value=0, item_type="Weapon")
+steel_armour = Item(name='Steel Armour', item_id=4, armour=4, buy_value=8, sell_value=3, item_type="Armour")
+health_potion = Item(name='Health Potion', item_id=5, buy_value=6, sell_value=2, heal_value=15, item_type="Health_Potion")
 
 item_list = [
     iron_sword,
     steel_sword,
     crimson_sword,
-    steel_armour
+    steel_armour,
+    health_potion
 ]
 
 inv = Inventory()

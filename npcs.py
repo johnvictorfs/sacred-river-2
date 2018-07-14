@@ -5,24 +5,28 @@ import inventory
 
 class Monster:
 
-    def __init__(self, name, attack, defence, health, gold_drops=(), special_drop=None, special_drop_rate=0):
+    def __init__(self, name, attack, defence, health, max_health=0, gold_drops=(), extra_drop=None, extra_drop_rate=0):
         self.name = name
         self.attack = attack
         self.defence = defence
         self.health = health
+        self.max_health = max_health
+        self.max_health = health
         self.gold_drops = gold_drops
-        self.special_drop = special_drop
-        self.special_drop_rate = special_drop_rate
+        self.extra_drop = extra_drop
+        self.extra_drop_rate = extra_drop_rate
 
     def display(self):
         clear_screen()
         print(f"""
---- Displaying stats of {self.name} ---
+_________________________________________
+||| Displaying NPC info of {self.name} |||
 - Attack: {self.attack}
 - Defence: {self.defence}
-- Health: {self.health}
-- Gold: {self.gold}
--------
+- Health: {self.health}/{self.max_health}
+- Gold Drops: 0-{self.gold_drops}
+- Extra Drop: {self.extra_drop} (Rate 1/{self.extra_drop_rate})
+_________________________________________
         """)
 
 
@@ -69,13 +73,13 @@ spider_3 = Monster(name="Spider",
                    health=19,
                    gold_drops=5)
 
-crimson_skeleton = Monster(name="Crimson Skeleton",
-                           attack=18,
-                           defence=11,
-                           health=30,
-                           gold_drops=15,
-                           special_drop=inventory.crimson_sword,
-                           special_drop_rate=1)
+crimson_skeleton_1 = Monster(name="Crimson Skeleton",
+                             attack=18,
+                             defence=11,
+                             health=30,
+                             gold_drops=15,
+                             extra_drop=inventory.crimson_sword,
+                             extra_drop_rate=1)
 
 low_level_monsters = [
     goblin_1,
@@ -86,5 +90,5 @@ low_level_monsters = [
     spider_2,
     spider_3,
 
-    crimson_skeleton
+    crimson_skeleton_1
 ]
