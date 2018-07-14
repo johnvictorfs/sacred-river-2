@@ -27,7 +27,7 @@ def buy_item(item):
 
 
 def sell_item(item):
-    if item in inventory.inv.items:
+    if item.name in inventory.inv.items:
         inventory.inv.remove_item(item)
         player.gold += item.sell_value
         print(f"{player.name} sold {item.name} for {item.buy_value} gold.")
@@ -79,7 +79,10 @@ def display():
                 print(f"Sell Value: {item.sell_value}")
             if item.item_type is 'Weapon':
                 print(f"[ {index} ] {item.name} (+{item.attack} Attack)")
-                print(f"Cost: {item.sell_value}")
+                print(f"Sell Value: {item.sell_value}")
+            if item.item_type is 'Health_Potion':
+                print(f"[ {index} ] {item.name} (+{item.heal_value} Health)")
+                print(f"Sell Value: {item.sell_value}")
             index += 1
         print(f"\nYour Gold: {player.gold}")
         print(f"\n[ 1-{index-1} ] Sell Item")
@@ -96,10 +99,13 @@ def display():
             return
         except IndexError or TypeError:
             print("Item not found.")
+            prompt()
             return
     try:
         pos = int(answer) - 1
         buy_item(shop_entries[pos])
+        return
     except IndexError or TypeError:
         print("Item not found.")
         prompt()
+        return

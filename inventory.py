@@ -122,7 +122,6 @@ class Inventory:
                 if item.item_type is 'Weapon':
                     weapons.append(item)
             print("||| Weapons in Inventory |||")
-
             for item in weapons:
                 print("________________________________")
                 print(f"[ {index} ] {item.name} (+{item.attack} Attack)")
@@ -130,7 +129,7 @@ class Inventory:
             equip_options = ('q', 'Q')
             for item_option in range(index):
                 equip_options += (str(item_option),)
-            print(f"\n[ 1-{index-1} Equip Weapon")
+            print(f"\n[ 1-{index-1} ] Equip Weapon")
             print("[ Q ] Go back")
             answer = prompt("\n>> ", *equip_options)
             if answer is 'q' or answer is 'Q':
@@ -138,11 +137,8 @@ class Inventory:
             else:
                 try:
                     pos = int(answer) - 1
-                except TypeError:
-                    return
-                try:
                     self.equip_item(weapons[pos])
-                except IndexError:
+                except IndexError or TypeError:
                     print("Item not found.")
                 prompt()
 
@@ -161,19 +157,16 @@ class Inventory:
             equip_options = ('q', 'Q')
             for item_option in range(index):
                 equip_options += (str(item_option),)
-            print(f"\n[ 1-{index-1} Equip Armour")
+            print(f"\n[ 1-{index-1} ] Equip Armour")
             print("[ Q ] Go back")
             answer = prompt("\n>> ", *equip_options)
             if answer is 'q' or answer is 'Q':
                 return
             else:
                 try:
-                    pos = int(answer)-1
-                except TypeError:
-                    return
-                try:
+                    pos = int(answer) - 1
                     self.equip_item(armours[pos])
-                except IndexError:
+                except IndexError or TypeError:
                     print("Item not found.")
                 prompt()
         if answer is '3':

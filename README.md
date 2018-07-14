@@ -17,16 +17,17 @@ Still not in very usable state.
 
 ### Bugs:
 
-- Can only equip an item if you have more than one item in it
+- ~~Can only equip an item if you have more than one item in it~~ Fixed
 
-- Can only sell items if you have more than one item in it
+- ~~Can only sell items if you have more than one item in it~~  Fixed
 
 ### Features:
 
 - In-game Library with books and stuff
 
-- Add Health potion to shop
-    - Make it drinkable from inventory and when in combat
+- ~~Add Health potion to shop~~
+    - ~~Make it drinkable from inventory~~
+    - Make it drinkable in combat
     
 - Add more combat functions
     - Run
