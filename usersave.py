@@ -38,16 +38,19 @@ def read_inventory_status(file=INVENTORY_FILE):
     inventory_file = configparser.ConfigParser()
     inventory_file.read(file)
 
-    for key in inventory_file['USER_INVENTORY']:
-        for item in inventory.item_list:
-            if str(key) == str(item.id):
-                for quantity in range(int(inventory_file['USER_INVENTORY'][key])):
+    try:
+        for key in inventory_file['USER_INVENTORY']:
+            for item in inventory.item_list:
+                if str(key) == str(item.id):
+                    for quantity in range(int(inventory_file['USER_INVENTORY'][key])):
+                        inventory.inv.add_item(item, message=False)
+        for key in inventory_file['USER_EQUIPMENT']:
+            for item in inventory.item_list:
+                if str(key) == str(item.id):
                     inventory.inv.add_item(item, message=False)
-    for key in inventory_file['USER_EQUIPMENT']:
-        for item in inventory.item_list:
-            if str(key) == str(item.id):
-                inventory.inv.add_item(item, message=False)
-                inventory.inv.equip_item(item, message=False)
+                    inventory.inv.equip_item(item, message=False)
+    except KeyError:
+        return
 
 
 def create_save(name):

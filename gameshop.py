@@ -54,7 +54,7 @@ def display():
     print("\n[ Type the number of the item you wish to buy or 'Q' to go back ]")
     answer = prompt("\n>> ",
                     'q', 'Q', '1', '2', '3', '4', '5')
-    if answer.lower() == 'q':
+    if answer is 'q' or answer is 'Q':
         return
     try:
         buy_item(shop_entries[int(answer) - 1])

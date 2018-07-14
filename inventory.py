@@ -98,7 +98,7 @@ class Inventory:
                 index += 1
             print("\n[ Which Armour do you want to Equip? (Q to go Back) ]")
             prompt("\n\n>> ", 'Q', 'q', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10')
-            if answer.lower() is 'q':
+            if answer is 'q' or answer is 'Q':
                 return
             else:
                 pos = int(answer)-1
@@ -122,7 +122,7 @@ class Inventory:
                 index += 1
             print("\n[ Which Weapon do you want to Equip? (Q to go Back) ]")
             prompt("\n\n>> ", 'q', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10')
-            if answer is 'q':
+            if answer is 'q' or answer is 'Q':
                 return
             else:
                 pos = int(answer) - 1
@@ -172,11 +172,13 @@ class Inventory:
             del self.equipment[item.name]
             if message is True:
                 print(f"Unequipped {item.name}.")
+                self.add_item(item)
             if item.item_type is 'Armour':
                 self.armour_equipped = False
             if item.item_type is 'Weapon':
                 self.weapon_equipped = False
-            self.add_item(item)
+            if message is False:
+                self.add_item(item, message=False)
         else:
             if message is True:
                 print(f"Error, {item.name} not in Equipment.")
@@ -192,7 +194,6 @@ class Inventory:
             print("________________________________")
             if item.item_type is 'Weapon':
                 print(f"[ {index} ] {item.name} (+{item.attack} Attack)")
-                index += 1
             if item.item_type is 'Armour':
                 print(f"[ {index} ] {item.name} (+{item.armour} Armour)")
             print(f"Sell value: {item.sell_value} Gold")
@@ -206,16 +207,20 @@ ________________________
 |_______________________|
         """)
         answer = prompt("\n\n>> ", 'Q', 'q', '1', '2')
+        if answer is 'q' or answer is 'Q':
+            return
         if answer is '1':
             for item in self.equipment.values():
                 if item.item_type is 'Weapon':
                     self.unequip_item(item)
                     prompt()
+                    return
         elif answer is '2':
             for item in self.equipment.values():
                 if item.item_type is 'Armour':
                     self.unequip_item(item)
                     prompt()
+                    return
 
 
 iron_sword = Item(name='Iron Sword', id=1, attack=5, buy_value=7, sell_value=3, item_type="Weapon")

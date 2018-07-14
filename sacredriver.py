@@ -67,7 +67,9 @@ def main_menu():
 |_________________________|
     """)
     answer = prompt('\n>> ', '1', '2', '3', '4', '5', '6', 'r', 'R', 'q', 'Q', '')
-    if answer is '1':
+    if answer is 'q' or answer is 'Q':
+        exit(0)
+    elif answer is '1':
         gameshop.display()
     elif answer is '2':
         inventory.inv.display_inventory(player)
@@ -83,8 +85,6 @@ def main_menu():
         print("Hey, i'm still working on that :/")
         print("Reset your save manually by deleting 'inventory.ini' and 'user_stats.ini' and run the game again")
         prompt()
-    elif answer is 'q':
-        exit(0)
     main_menu()
 
 
