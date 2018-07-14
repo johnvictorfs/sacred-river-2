@@ -13,7 +13,7 @@ import inventory
 import gameshop
 
 __author__ = 'John Victor'
-__version__ = 'Alpha 0.2'
+__version__ = 'Alpha 0.3'
 (__description__, __long_description__) = read_info()
 
 """ Dev Notes:
