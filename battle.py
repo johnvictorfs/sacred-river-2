@@ -61,7 +61,7 @@ __________________________________________
             player.death()
         if npc.health <= 0:
             break
-        print("[ 1 ] Attack")
+        print("[ 1/Enter ] Attack")
         print("[ 2 ] Drink HP Potion")
         print(f"[ Q ] Run Away! ({player.luck} roll(s) at a 1/5 Chance)")
         answer = prompt("\n>> ")
