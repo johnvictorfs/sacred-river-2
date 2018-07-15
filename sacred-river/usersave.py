@@ -56,13 +56,14 @@ def read_inventory_status(file=INVENTORY_FILE):
 
 def create_save(name):
     config = configparser.ConfigParser()
-    config['USER_STATS'] = {'name': name,
-                            'attack': 10,
-                            'defence': 0,
-                            'health': 50,
-                            'gold': 20,
-                            'luck': 1
-                            }
+    config['USER_STATS'] = {
+        'name': name,
+        'attack': 10,
+        'defence': 0,
+        'health': 50,
+        'gold': 20,
+        'luck': 1
+    }
 
     if settings_exist(file=STATUS_FILE):
         player_save = read_save_status()
@@ -92,13 +93,14 @@ def create_user_data():
 def save_stats():
     config = configparser.ConfigParser()
 
-    config['USER_STATS'] = {'name': player.name,
-                            'attack': player.attack,
-                            'defence': player.defence,
-                            'health': player.health,
-                            'gold': player.gold,
-                            'luck': player.luck
-                            }
+    config['USER_STATS'] = {
+        'name': player.name,
+        'attack': player.attack,
+        'defence': player.defence,
+        'health': player.health,
+        'gold': player.gold,
+        'luck': player.luck
+    }
     with open(STATUS_FILE, 'w') as config_file:
         config.write(config_file)
 

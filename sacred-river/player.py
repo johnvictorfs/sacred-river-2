@@ -68,12 +68,11 @@ _________________________________________""")
     def death(self):
         clear_screen()
         print(f"""
-    --- Oh dear, {self.name} Died! ---
-    
-    Restart the game to keep playing.
-    Your stats will keep going from the last point you saved.
-    
-    ---""")
+--- Oh dear, {self.name} Died! ---
+
+Restart the game to keep playing.
+Your stats will keep going from the last point you saved.
+
+---""")
         prompt("< Press Enter to exit. >")
         exit(0)
-

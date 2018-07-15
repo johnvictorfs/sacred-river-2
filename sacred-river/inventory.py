@@ -138,7 +138,7 @@ class Inventory:
                 try:
                     pos = int(answer) - 1
                     self.equip_item(weapons[pos])
-                except IndexError or TypeError:
+                except (IndexError, TypeError):
                     print("Item not found.")
                 prompt()
 
@@ -166,7 +166,7 @@ class Inventory:
                 try:
                     pos = int(answer) - 1
                     self.equip_item(armours[pos])
-                except IndexError or TypeError:
+                except (IndexError, TypeError):
                     print("Item not found.")
                 prompt()
         if answer is '3':
@@ -191,7 +191,7 @@ class Inventory:
             try:
                 pos = int(answer) - 1
                 self.drink_potion(item_options[pos], player)
-            except IndexError or TypeError:
+            except (IndexError, TypeError):
                 print("Item not found.")
                 prompt()
                 return
@@ -210,7 +210,7 @@ class Inventory:
         if item.item_type is 'Weapon':
             if self.weapon_equipped is False:
                 self.equipment[item.name] = item
-                self.remove_item(item)
+                self.remove_item(item, message=message)
                 self.weapon_equipped = True
                 if message is True:
                     print(f"Equipped {item.name}.")
@@ -221,7 +221,7 @@ class Inventory:
         if item.item_type is 'Armour':
             if self.armour_equipped is False:
                 self.equipment[item.name] = item
-                self.remove_item(item)
+                self.remove_item(item, message=message)
                 self.armour_equipped = True
                 if message is True:
                     print(f"Equipped {item.name}.")
@@ -236,7 +236,7 @@ class Inventory:
             del self.equipment[item.name]
             if message is True:
                 print(f"Unequipped {item.name}.")
-                self.add_item(item)
+                self.add_item(item, message=message)
             if item.item_type is 'Armour':
                 self.armour_equipped = False
             if item.item_type is 'Weapon':
