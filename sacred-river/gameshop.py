@@ -54,10 +54,12 @@ def display():
             print(f"[ {index} ] {item.name} (+{item.heal_value} Health)")
             print(f"Cost: {item.buy_value}")
         index += 1
-    print(f"\nYour Gold: [ {player.gold} ]")
-    print(f"\n[ 1-{index-1} ] Buy Item ")
-    print("[ S ] Sell items ")
-    print("[ Q ] Go Back")
+    print(f"""
+Your Gold: [ {player.gold} ] 
+
+[ 1-{index-1} ] Buy Item
+[ S ] Sell items
+[ Q ] Go Back""")
     options_tuple = ('q', 'Q', 's', 'S')
     for item_option in range(index):
         options_tuple += (str(item_option),)

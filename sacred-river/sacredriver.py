@@ -36,17 +36,9 @@ START_TEXT = f"""
 |                                                               |
 |_______________________________________________________________|
 
-[ Current build: {__version__} ]
-"""
+[ Current build: {__version__} ]"""
 
-
-def main():
-    print(START_TEXT)
-    prompt()
-
-
-def main_menu():
-    print("""
+MAIN_MENU_TEXT = """
  _________________________
 |        MAIN MENU        |
 |                         |
@@ -62,8 +54,16 @@ def main_menu():
 |                         |
 | [ R ] Reset Save        |
 | [ Q ] Quit              |
-|_________________________|
-    """)
+|_________________________|"""
+
+
+def main():
+    print(START_TEXT)
+    prompt()
+
+
+def main_menu():
+    print(MAIN_MENU_TEXT)
     answer = prompt('\n>> ', '1', '2', '3', '4', '5', '6', 'r', 'R', 'q', 'Q', '')
     if answer is 'q' or answer is 'Q':
         exit(0)

@@ -8,10 +8,9 @@ import inventory
 
 def battle(player, npc):
     """
-    Returns a tuple of (player.health, npc.health)
     :param player: Monster
     :param npc: Player
-    :return: int
+    :return: None
     """
     weapon_attack = 0
     for item in inventory.inv.equipment.values():
@@ -54,33 +53,31 @@ ______ {player.name} Vs {npc.name} ______
 -----------------------------------------
 - {player.name} HP: {player.health}/{player.max_health}
 - {npc.name} HP: {npc.health}/{npc.max_health}
-__________________________________________
-
-    """)
+__________________________________________""")
         if player.health <= 0:
             player.death()
         if npc.health <= 0:
             break
-        print("[ 1/Enter ] Attack")
-        print("[ 2 ] Drink HP Potion")
-        print(f"[ Q ] Run Away! ({player.luck} roll(s) at a 1/5 Chance)")
-        answer = prompt("\n>> ")
+        print(f"""
+[ Enter ] Attack
+[   1   ] Attack
+[   2   ] Drink HP Potion
+[   Q   ] Run Away!
+
+Current Run chance: {player.luck} roll(s) at 1/5 Chance.""")
+        answer = prompt("\n>> ", '', '1', '2', 'q', 'Q')
         if answer is '1':
             pass
         elif answer is '2':
-            found = False
             for item in inventory.inv.items.values():
                 if item.item_type is 'Health_Potion':
                     inventory.inv.drink_potion(item, player)
-                    found = True
-                    break
-            if found is False:
+            else:
                 print("You don't have any Health Potions.")
                 prompt()
         if answer is 'q' or answer is 'Q':
             for number in range(player.luck):
-                run_away = random.randint(0, 5)
-                if run_away is 5:
+                if random.randint(0, 5) is 5:
                     clear_screen()
                     print("You ran away successfully. What a coward!")
                     prompt()
@@ -90,45 +87,31 @@ __________________________________________
             prompt()
 
     gold_reward = random.randint(0, npc.gold_drops)
-    extra_reward = "None"
     for number in range(player.luck):
         roll_special = random.randint(0, npc.extra_drop_rate)
         if npc.extra_drop_rate == roll_special:
             extra_reward = npc.extra_drop
+    clear_screen()
+    print(f"""
+________________________________________________
+[ {player.name} beat {npc.name} successfully. ]
 
-    print(f"- {player.name} beat {npc.name} successfully and won -")
-    print(f"HP: {player.health}/{player.max_health}")
-    print("- Rewards -")
-    print(f"- Gold: {gold_reward}")
+[ HP: {player.health}/{player.max_health} ]
+________________________________________________
+[      REWARDS      ]
 
-    roll_level_hp = random.randint(0, 50)
-    if roll_level_hp is 25:
-        old_health = player.max_health
-        player.max_health += random.randint(5, 15)
-        player.health = player.max_health
-        print(f"\n* LEVEL UP: Your Max health is now {player.max_health} (from {old_health}).")
-        print("- Your HP has also been healed to Maximum. -")
-    roll_level_luck = random.randint(0, 50)
-    if roll_level_luck is 15:
-        old_luck = player.luck
-        player.luck += random.randint(1, 3)
-        print(f"\n* LEVEL UP: Your Luck is now {player.luck} (from {old_luck}).")
-    roll_level_attack = random.randint(0, 50)
-    if roll_level_attack is 10:
-        old_attack = player.attack
-        player.attack += random.randint(1, 4)
-        print(f"\n* LEVEL UP: Your Attack is now {player.attack} (from {old_attack}).")
-    roll_level_defence = random.randint(0, 50)
-    if roll_level_defence is 15:
-        old_defence = player.defence
-        player.defence += random.randint(2, 6)
-        print(f"\n* LEVEL UP: Your Defence is now {player.defence} (from {old_defence}).")
+[ Gold: {gold_reward} ]
+    """)
     try:
-        print(f"- Other: {extra_reward.name}")
+        print(f"[ Other: {extra_reward.name} ]")
         inventory.inv.add_item(npc.special_drop)
     except AttributeError:
-        print("- Other: None")
-        pass
+        print("[ Other: None ]")
+    player.level_up(skill='attack', chance=7, increase=5)
+    player.level_up(skill='defence', chance=25, increase=3)
+    player.level_up(skill='health', chance=15, increase=5)
+    player.level_up(skill='luck', chance=5, increase=2)
+
     player.gold += gold_reward
     prompt()
 

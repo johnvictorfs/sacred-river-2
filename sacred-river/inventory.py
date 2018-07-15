@@ -109,8 +109,7 @@ class Inventory:
 | [ 3 ] Drink Potion  |
 |                     |
 | [ Q ] Go back       |
-|_____________________|
-        """)
+|_____________________|""")
         answer = prompt(">> ", 'q', 'Q', '1', '2', '3')
         if answer is 'q':
             return
@@ -269,8 +268,7 @@ ________________________
 | [ 2 ] Unequip Armour  |
 |                       |
 | [ Q ] Go back         |
-|_______________________|
-        """)
+|_______________________|""")
         answer = prompt("\n>> ", 'Q', 'q', '1', '2')
         if answer is 'q' or answer is 'Q':
             return
