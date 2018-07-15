@@ -20,7 +20,7 @@ A simple terminal text-based RPG game made in Python 3.6
 
 # Running
 
-- Just do `python sacredriver.py` (`python3 sacredriver.py` on Linux) nothing special to it
+- Open sacred-river folder on a terminal and do `python sacredriver.py` (`python3 sacredriver.py` on Linux) nothing special to it
 
 ***
 
@@ -49,3 +49,7 @@ A simple terminal text-based RPG game made in Python 3.6
 
 - Add a way for user to reset save state inside the game
     - Can currently be done manually by deleting "inventory.ini" and "user_stats.ini"
+    
+### Code:
+
+- Make inventory/equipment system use dictionaries for options instead of lists
