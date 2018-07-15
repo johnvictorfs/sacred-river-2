@@ -19,12 +19,8 @@ def buy_item(item):
         print(f"{player.name} bought {item.name} for {item.buy_value} gold.")
         print(f"{player.name} Gold: {player.gold}")
         inventory.inv.add_item(item)
-        prompt()
-        display()
     else:
         print("Hey, you don't have enough money to buy that!")
-        prompt()
-        display()
 
 
 def sell_item(item, message=True):
@@ -61,7 +57,10 @@ Your Gold: [ {player.gold} ]
 [ 1-{index} ] Buy Item
 [ S ] Sell items
 [ Q ] Go Back""")
-    answer = prompt("\n>> ")
+    options = ('q', 'Q', 's', 'S')
+    for item in range(index):
+        options += (str(item),)
+    answer = prompt("\n>> ", *options)
     if answer is 'q' or answer is 'Q':
         return
     elif answer is 's' or answer is 'S':

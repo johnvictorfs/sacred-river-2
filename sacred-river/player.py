@@ -46,24 +46,32 @@ _________________________________________""")
         :return: None
         """
         skills = {
-            'attack': (self.attack, "Attack"),
-            'defence': (self.defence, "Defence"),
-            'health': (self.max_health, "HP"),
-            'luck': (self.luck, "Luck")
+            'attack': [self.attack, "Attack"],
+            'defence': [self.defence, "Defence"],
+            'health': [self.max_health, "HP"],
+            'luck': [self.luck, "Luck"]
         }
 
         roll = random.randint(0, chance)
 
         if chance is roll:
             final_increase = random.randint(1, increase)
-            difference = skills[skill][0] - final_increase
             skills[skill][0] += final_increase
 
             skill_name = skills[skill][1]
             skill_level = skills[skill][0]
 
+            if skill_name is 'Attack':
+                self.attack += final_increase
+            elif skill_name is 'Defence':
+                self.defence += final_increase
+            elif skill_name is 'HP':
+                self.max_health += final_increase
+            elif skill_name is 'Luck':
+                self.luck += final_increase
+
             if message is True:
-                print(f"\n** LEVEL UP: Your {skill_name} has increased by {difference} and is now {skill_level}. **")
+                print(f"\n* LEVEL UP: Your {skill_name} has increased by {final_increase} and is now {skill_level}. *")
 
     def death(self):
         clear_screen()
