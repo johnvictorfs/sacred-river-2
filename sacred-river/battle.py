@@ -22,6 +22,7 @@ def battle(player, npc):
             armour_defence = item.armour
     effective_player_defence = player.defence + armour_defence
     effective_player_attack = player.attack + weapon_attack
+    npc.health = npc.max_health
     print(f"""
 ______ {player.name} Vs {npc.name} ______
 
@@ -87,8 +88,6 @@ Current Run chance: {player.luck} roll(s) at 1/5 Chance.""")
             prompt()
 
     gold_reward = random.randint(0, npc.gold_drops)
-
-    clear_screen()
     print(f"""
 ________________________________________________
 [ {player.name} beat {npc.name} successfully. ]

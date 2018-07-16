@@ -141,6 +141,7 @@ class Inventory:
                 except (IndexError, TypeError):
                     print("Item not found.")
                 prompt()
+                return
 
         if answer is '2':
             clear_screen()
@@ -169,6 +170,7 @@ class Inventory:
                 except (IndexError, TypeError):
                     print("Item not found.")
                 prompt()
+                return
         if answer is '3':
             clear_screen()
             index = 1
@@ -216,7 +218,8 @@ class Inventory:
                     print(f"Equipped {item.name}.")
                 return
             else:
-                print("You already have a Weapon equipped. Unequip it first.")
+                if message is True:
+                    print("You already have a Weapon equipped. Unequip it first.")
                 return
         if item.item_type is 'Armour':
             if self.armour_equipped is False:
@@ -253,15 +256,13 @@ class Inventory:
             print(f"{player.name} has no items equipped!")
             prompt()
             return
-        index = 1
         for item in self.equipment.values():
             print("________________________________")
             if item.item_type is 'Weapon':
-                print(f"[ {index} ] {item.name} (+{item.attack} Attack)")
+                print(f"[ Weapon: ] {item.name} (+{item.attack} Attack)")
             if item.item_type is 'Armour':
-                print(f"[ {index} ] {item.name} (+{item.armour} Armour)")
+                print(f"[ Armour: ] {item.name} (+{item.armour} Armour)")
             print(f"Sell value: {item.sell_value} Gold")
-            index += 1
         print("""
 ________________________
 | [ 1 ] Unequip Weapon  |
@@ -322,6 +323,7 @@ health_potion = Item(name='Health Potion',
 
 crimson_staff = Item(name="Crimson Staff",
                      item_id=6,
+                     attack=12,
                      sell_value=15,
                      item_type="Weapon"
                      )
