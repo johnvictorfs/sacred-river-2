@@ -58,11 +58,13 @@ MAIN_MENU_TEXT = """
 
 
 def main():
+    check_cheating()
     print(START_TEXT)
     prompt()
 
 
 def main_menu():
+
     print(MAIN_MENU_TEXT)
     answer = prompt('\n>> ', '1', '2', '3', '4', '5', '6', 'r', 'R', 'q', 'Q', '')
     if answer is 'q' or answer is 'Q':
@@ -84,6 +86,16 @@ def main_menu():
         print("Reset your save manually by deleting 'inventory.ini' and 'user_stats.ini' and run the game again")
         prompt()
     main_menu()
+
+
+def check_cheating():
+    if player.health > player.max_health or player.attack > 500 or player.defence > 500 or player.gold > 500:
+        print("Hey, your stats looks kinda weird.")
+        print("One would think you might have tampered with some .ini files.")
+        print("*Wink wink* ;)")
+        prompt()
+        return True
+    return False
 
 
 if __name__ == '__main__':

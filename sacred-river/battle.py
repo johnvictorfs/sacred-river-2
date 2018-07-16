@@ -87,10 +87,7 @@ Current Run chance: {player.luck} roll(s) at 1/5 Chance.""")
             prompt()
 
     gold_reward = random.randint(0, npc.gold_drops)
-    for number in range(player.luck):
-        roll_special = random.randint(0, npc.extra_drop_rate)
-        if npc.extra_drop_rate == roll_special:
-            extra_reward = npc.extra_drop
+
     clear_screen()
     print(f"""
 ________________________________________________
@@ -102,10 +99,15 @@ ________________________________________________
 
 [ Gold: {gold_reward} ]
     """)
-    try:
-        print(f"[ Other: {extra_reward.name} ]")
-        inventory.inv.add_item(npc.special_drop)
-    except (AttributeError, UnboundLocalError):
+    for number in range(player.luck):
+        if random.randint(0, npc.extra_drop_rate) == npc.extra_drop_rate:
+            try:
+                print(f"[ Other: {npc.extra_drop.name} ]")
+                inventory.inv.add_item(npc.extra_drop)
+                break
+            except AttributeError:
+                pass
+    else:
         print("[ Other: None ]")
     player.level_up(skill='attack', chance=7, increase=5)
     player.level_up(skill='defence', chance=25, increase=3)
