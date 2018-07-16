@@ -105,7 +105,7 @@ ________________________________________________
     try:
         print(f"[ Other: {extra_reward.name} ]")
         inventory.inv.add_item(npc.special_drop)
-    except AttributeError:
+    except (AttributeError, UnboundLocalError):
         print("[ Other: None ]")
     player.level_up(skill='attack', chance=7, increase=5)
     player.level_up(skill='defence', chance=25, increase=3)
