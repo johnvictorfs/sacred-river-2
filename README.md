@@ -26,30 +26,4 @@ A simple terminal text-based RPG game made in Python 3.6
 
 # To do:
 
-### Bugs:
-
-- ~~Can only equip an item if you have more than one item in it~~ Fixed
-
-- ~~Can only sell items if you have more than one item in it~~  Fixed
-
-### Features:
-
-- In-game Library with books and stuff
-
-- ~~Add Health potion to shop~~
-    - ~~Make it drinkable from inventory~~
-    - ~~Make it drinkable in combat~~
-    
-- Add more combat functions
-    - ~~Run~~
-    - ~~Drink HP potions~~
-    - Equip/Unequip items (possibly unnecessary)
-    - Different combat stances?
-        - Defensive/Aggressive/Accurate
-
-- Add a way for user to reset save state inside the game
-    - Can currently be done manually by deleting "inventory.ini" and "user_stats.ini"
-    
-### Code:
-
-- Make inventory/equipment system use dictionaries for options instead of lists
+https://github.com/johnvictorfs/sacred-river-2/issues
