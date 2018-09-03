@@ -89,7 +89,7 @@ def main_menu():
 
 
 def check_cheating():
-    if player.health > player.max_health or player.attack > 500 or player.defence > 500 or player.gold > 5000:
+    if player.health > player.max_health:
         print("Hey, your stats looks kinda weird.")
         print("One would think you might have tampered with some .ini files.")
         print("*Wink wink* ;)")

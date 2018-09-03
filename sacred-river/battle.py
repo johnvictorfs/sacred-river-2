@@ -12,14 +12,18 @@ def battle(player, npc):
     :param npc: Player
     :return: None
     """
-    weapon_attack = 0
     for item in inventory.inv.equipment.values():
         if item.item_type == 'Weapon':
             weapon_attack = item.attack
-    armour_defence = 0
+            break
+    else:
+        weapon_attack = 0
     for item in inventory.inv.equipment.values():
         if item.item_type == 'Armour':
             armour_defence = item.armour
+            break
+    else:
+        armour_defence = 0
     effective_player_defence = player.defence + armour_defence
     effective_player_attack = player.attack + weapon_attack
     npc.health = npc.max_health
@@ -89,7 +93,6 @@ Current Run chance: {player.luck} roll(s) at 1/5 Chance.""")
 
     gold_reward = random.randint(0, npc.gold_drops)
     print(f"""
-________________________________________________
 [ {player.name} beat {npc.name} successfully. ]
 
 [ HP: {player.health}/{player.max_health} ]
