@@ -52,13 +52,13 @@ def display():
             print(f"[ {index} ] {item.name} (+{item.heal_value} Health)")
         print(f"Cost: {item.buy_value}")
     print(f"""
-Your Gold: [ {player.gold} ] 
+Your Gold: [ {player.gold} ]
 
 [ 1-{index} ] Buy Item
 [ S ] Sell items
 [ Q ] Go Back""")
     options = ('q', 'Q', 's', 'S')
-    for item in range(index):
+    for item in range(index + 1):
         options += (str(item),)
     answer = prompt("\n>> ", *options)
     if answer is 'q' or answer is 'Q':
@@ -79,38 +79,38 @@ Your Gold: [ {player.gold} ]
 
 
 def sell_inventory_items():
-        if not inventory.inv.items.values():
-            print("You don't have any items to sell.")
+    if not inventory.inv.items.values():
+        print("You don't have any items to sell.")
+        prompt()
+        return
+    inventory_list = {}
+    index = 0
+    for item in inventory.inv.items.values():
+        index += 1
+        inventory_list[index] = item
+        print("________________________________")
+        if item.item_type is 'Armour':
+            print(f"[ {index} ] {item.name} (+{item.armour} Armour)")
+            print(f"Sell Value: {item.sell_value}")
+        if item.item_type is 'Weapon':
+            print(f"[ {index} ] {item.name} (+{item.attack} Attack)")
+            print(f"Sell Value: {item.sell_value}")
+        if item.item_type is 'Health_Potion':
+            print(f"[ {index} ] {item.name} (+{item.heal_value} Health)")
+            print(f"Sell Value: {item.sell_value}")
+    print(f"\nYour Gold: {player.gold}")
+    print(f"\n[ 1-{index} ] Sell Item")
+    print("[ Q ] Go back")
+    answer = prompt("\n>> ")
+    if answer is 'q' or answer is 'Q':
+        display()
+        return
+    else:
+        try:
+            sell_item(inventory_list[int(answer)])
             prompt()
-            return
-        inventory_list = {}
-        index = 0
-        for item in inventory.inv.items.values():
-            index += 1
-            inventory_list[index] = item
-            print("________________________________")
-            if item.item_type is 'Armour':
-                print(f"[ {index} ] {item.name} (+{item.armour} Armour)")
-                print(f"Sell Value: {item.sell_value}")
-            if item.item_type is 'Weapon':
-                print(f"[ {index} ] {item.name} (+{item.attack} Attack)")
-                print(f"Sell Value: {item.sell_value}")
-            if item.item_type is 'Health_Potion':
-                print(f"[ {index} ] {item.name} (+{item.heal_value} Health)")
-                print(f"Sell Value: {item.sell_value}")
-        print(f"\nYour Gold: {player.gold}")
-        print(f"\n[ 1-{index} ] Sell Item")
-        print("[ Q ] Go back")
-        answer = prompt("\n>> ")
-        if answer is 'q' or answer is 'Q':
-            display()
-            return
-        else:
-            try:
-                sell_item(inventory_list[int(answer)])
-                prompt()
-                sell_inventory_items()
-            except (IndexError, TypeError, KeyError, ValueError):
-                print("Item not found.")
-                prompt()
-                sell_inventory_items()
+            sell_inventory_items()
+        except (IndexError, TypeError, KeyError, ValueError):
+            print("Item not found.")
+            prompt()
+            sell_inventory_items()
