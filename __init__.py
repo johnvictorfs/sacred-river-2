@@ -21,11 +21,15 @@ __license__ = "MIT License"
 
 def initial_screen():
     clear_screen()
-    print("Welcome to Sacred River 2!")
-    print("\n")
-    print("- Made by {}\n- Version: {}".format(__author__, __version__))
-    print("\n")
-    print("The sequel of my terminal text-RPG originally made in C.\nThis time made in Python.")
-    print("\n")
+    print(f"""
+ _______________________________________________________________________
+|                    Welcome to Sacred River 2!                         |
+|                                                                       |
+|   This is the sequel of my terminal text-RPG originally made with C.  |
+|   This time in Python!                                                |
+|_______________________________________________________________________|
+   - Made by {__author__}.                                             
+   - Version: {__version__}.                                           
+""")
     continue_screen()
     return

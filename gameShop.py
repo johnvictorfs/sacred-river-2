@@ -1,6 +1,7 @@
-from classes import *
+import classes
+from continueScreen import continue_screen
 from getInput import get_input
-from userInventory import *
+from userInventory import Inventory, Equipment
 from clearScreen import clear_screen
 
 inventory = Inventory()
@@ -8,17 +9,17 @@ inventory = Inventory()
 
 def display_shop():
     clear_screen()
-    print("1- Iron Sword - {} gold".format(iron_sword.buy_value))
-    print("2- Steel Sword - {} gold".format(steel_sword.buy_value))
-    print("3- Health Potion - {} gold".format(health_potion.buy_value))
+    print(f"1- Iron Sword - {classes.iron_sword.buy_value} gold")
+    print(f"2- Steel Sword - {classes.steel_sword.buy_value} gold")
+    print(f"3- Health Potion - {classes.health_potion.buy_value} gold")
     answer = get_input()
     global buying_item
     if answer is '1':
-        buying_item = iron_sword
+        buying_item = classes.iron_sword
     elif answer is '2':
-        buying_item = steel_sword
+        buying_item = classes.steel_sword
     elif answer is '3':
-        buying_item = health_potion
+        buying_item = classes.health_potion
     else:
         print("Invalid answer.")
         return
@@ -27,10 +28,10 @@ def display_shop():
 
 
 def buy(item):
-    if player.gold >= item.buy_value:
+    if classes.player.gold >= item.buy_value:
         print("Bought {}".format(item.name))
-        player.gold -= item.buy_value
-        print("Your gold: {}".format(player.gold))
+        classes.player.gold -= item.buy_value
+        print("Your gold: {}".format(classes.player.gold))
         continue_screen()
         return item
     else:

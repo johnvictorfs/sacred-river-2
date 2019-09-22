@@ -1,11 +1,12 @@
 #!/usr/bin/env python
-# Local
-from classes import *
-from userInventory import *
+
+# Local imports
+from classes import User, Enemy, Item, player
+from userInventory import Inventory, Equipment
 from gameMenu import game_menu
 from setUsername import set_username
 from killGame import kill_game
-from __init__ import *
+from __init__ import initial_screen, __author__, __version__
 
 inventory = Inventory()
 
@@ -16,6 +17,9 @@ clear_screen()
 
     # 'Press Enter to continue' screen
 continue_screen()
+
+    # Getting user input
+get_input(message="")
 
     # Giving item to player
 inventory.add_item(item_name)

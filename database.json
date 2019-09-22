@@ -1,0 +1,25 @@
+{
+  "weapons": [
+    {
+      "name": "Iron Sword",
+      "attack": 5,
+      "buy_value": 8,
+      "sell_value": 4,
+      "sellable": true
+    },
+    {
+      "name": "Steel Sword",
+      "attack": 8,
+      "buy_value": 12,
+      "sell_value": 6,
+      "sellable": true
+    },
+    {
+      "name": "Skeletal Sword",
+      "attack": 10,
+      "buy_value": 0,
+      "sell_value": 9,
+      "sellable": true
+    }
+  ]
+}
