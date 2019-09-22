@@ -31,7 +31,7 @@ class Weapon(Equipment):
     attack: int = 0
 
     def __str__(self) -> str:
-        return super.__str__() + f'\n[Attack] +{self.attack}'
+        return super(Weapon, self).__str__() + f'\n[Attack] +{self.attack}'
 
 
 @dataclass
@@ -39,7 +39,7 @@ class Armour(Equipment):
     defence: int = 0
 
     def __str__(self) -> str:
-        return super.__str__() + f'\n[Defence] +{self.defence}'
+        return super(Armour, self).__str__() + f'\n[Defence] +{self.defence}'
 
 
 @dataclass
@@ -49,7 +49,7 @@ class HealthPotion(Potion):
     buy_value: int = 6
 
     def __str__(self) -> str:
-        return super.__str__() + f'\n[Heal Value] +{self.heal_value}'
+        return super(HealthPotion, self).__str__() + f'\n[Heal Value] +{self.heal_value}'
 
 
 @dataclass

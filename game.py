@@ -12,10 +12,23 @@ class Game:
 
     def __init__(self):
         inventory = Inventory()
-        armour = Armour(name='Training Armour', defence=2)
-        weapon = Weapon(name='Training Sword', attack=2)
-        self.player = User(name='NRiver', inventory=inventory, weapon=weapon, armour=armour)
+        self.player = User(name='NRiver', inventory=inventory, weapon=None, armour=None)
+
+        self.player.inventory.add(
+            Armour(name='Training Armour', defence=2),
+            Weapon(name='Training Sword', attack=2)
+        )
+
+        self.player.equip(inventory.items['Training Armour'])
+        self.player.equip(inventory.items['Training Sword'])
+
         print(self.player.attack)
+
+        self.player.unequip_weapon()
+
+        print(self.player.attack)
+
+        self.player.inventory.list_items()
 
 
 if __name__ == "__main__":

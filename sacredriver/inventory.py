@@ -10,21 +10,22 @@ class Inventory:
     def __init__(self):
         self.items = {}
 
-    def add(self, item: Item) -> None:
+    def add(self, *items: Item) -> None:
         """
-        Adds an item to a player's inventory
+        Adds one or multiple of an item to a player's inventory
 
         If one of the same item already exists, its quantity is upped by one
         """
-        if self.items.get(item.name):
-            self.items[item.name].quantity += 1
-        else:
-            self.items[item.name] = item
+        for item in items:
+            if self.items.get(item.name):
+                self.items[item.name].quantity += 1
+            else:
+                self.items[item.name] = item
 
-        send(f'Added {item.name} to inventory.')
+            send(f'Added {item.name} to inventory.')
 
     def remove(self, item: Item) -> None:
-        if self.items.get('item.name'):
+        if self.items.get(item.name):
             self.items[item.name].quantity -= 1
 
             if self.items[item.name].quantity <= 0:

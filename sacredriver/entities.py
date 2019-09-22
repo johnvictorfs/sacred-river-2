@@ -2,6 +2,7 @@ from dataclasses import dataclass
 
 from sacredriver.items import Armour, Weapon, Equipment
 from sacredriver.inventory import Inventory
+from sacredriver.utils import send
 
 
 @dataclass
@@ -35,7 +36,7 @@ class User(Entity):
         """
         Sets Armour or Weapon as equipped, and removes it from Inventory
         """
-        if not self.inventory.get(item.name):
+        if not self.inventory.items.get(item.name):
             send('You can\'t equip an item you do not have.')
             return
 
@@ -54,18 +55,18 @@ class User(Entity):
         Unequips weapon, if Player has one equipped
         """
         if not self.weapon:
-            send('You have no Weapon equipped already.')
-            return
+            return send('You have no Weapon equipped already.')
+        send(f'Unequipped {self.weapon.name}.')
         self.inventory.add(self.weapon)
         self.weapon = None
 
-    def unequipe_armour(self):
+    def unequip_armour(self):
         """
         Unequips Armour, if Player has one equipped
         """
         if not self.armour:
-            send('You have no Armour equipped already.')
-            return
+            return send('You have no Armour equipped already.')
+        send(f'Equipped {self.armour.name}.')
         self.inventory.add(self.armour)
         self.armour = None
 
